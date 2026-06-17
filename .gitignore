@@ -216,3 +216,18 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Project datasets
+
+*.xlsx
+*.csv
+
+# SQLite databases
+
+*.db
+
+# Processed data
+
+data/raw/
+data/processed/
+data/database/
