@@ -100,6 +100,20 @@ for name, df in datasets.items():
                 "issue": "Duplicate Primary Key"
             })
 
+dq01_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_01"
+)
+
+print("DQ-01 Failures:", dq01_count)
+
+dq02_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_02"
+)
+
+print("DQ-02 Failures:", dq02_count)
+
 # DQ-03 Foreign Key Validation
 
 for table_name, df in child_tables.items():
@@ -116,44 +130,43 @@ for table_name, df in child_tables.items():
                 "row": index,
                 "issue": f"Invalid company_id: {row['company_id']}"
             })
-# DQ-04 : Year Validation
-for table_name, df in child_tables.items():
-
-    if "year" in df.columns:
-
-        year_text = df["year"].astype(str)
-
-        year_numeric = year_text.str.extract(r'(\d{2,4})')[0]
-
-        year_numeric = pd.to_numeric(
-            year_numeric,
-            errors="coerce"
-        )
-        year_numeric = year_numeric.apply(
-            lambda x: x + 2000 if pd.notna(x) and x < 100 else x
-        )
-        
-        bad_rows = df[
-            (year_numeric < 2000) |
-            (year_numeric > 2025) |
-            (year_numeric.isnull())
-        ]
-
-        for index, row in bad_rows.iterrows():
-
-            failures.append({
-                "table": table_name,
-                "rule": "DQ_04",
-                "row": index,
-                "issue": f"Invalid year: {row['year']}"
-            })
 
 dq03_count = sum(
     1 for x in failures
     if x["rule"] == "DQ_03"
 )
 
-print("\nDQ-03 Failures:", dq03_count)
+print("DQ-03 Failures:", dq03_count)
+
+# DQ-04 : BS Balance <1%
+
+assets = pd.to_numeric(
+    balancesheet["total_assets"],
+    errors="coerce"
+)
+
+liabilities = pd.to_numeric(
+    balancesheet["total_liabilities"],
+    errors="coerce"
+)
+
+difference_pct = (
+    abs(assets - liabilities)
+    / assets.replace(0, pd.NA)
+) * 100
+
+bad_rows = balancesheet[
+    difference_pct > 1
+]
+
+for index, row in bad_rows.iterrows():
+
+    failures.append({
+        "table": "Balance Sheet",
+        "rule": "DQ_04",
+        "row": index,
+        "issue": "Balance Sheet mismatch > 1%"
+    })
 
 dq04_count = sum(
     1 for x in failures
@@ -264,6 +277,271 @@ dq07_count = sum(
 
 print("DQ-07 Failures:", dq07_count)
 
+# DQ-08 : OPM Cross Check
+
+pl_opm = profitandloss[
+    ["company_id", "year", "sales", "operating_profit"]
+].copy()
+
+ratio_opm = financial_ratios[
+    ["company_id", "year", "operating_profit_margin_pct"]
+].copy()
+
+merged = pd.merge(
+    pl_opm,
+    ratio_opm,
+    on=["company_id", "year"],
+    how="inner"
+)
+
+merged["calculated_opm"] = (
+    merged["operating_profit"] /
+    merged["sales"]
+) * 100
+
+bad_rows = merged[
+    abs(
+        merged["calculated_opm"] -
+        merged["operating_profit_margin_pct"]
+    ) > 1
+]
+
+for index, row in bad_rows.iterrows():
+
+    failures.append({
+        "table": "Financial Ratios",
+        "rule": "DQ_08",
+        "row": index,
+        "issue": "OPM mismatch"
+    })
+
+dq08_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_08"
+)
+
+print("DQ-08 Failures:", dq08_count)
+
+# DQ-09 : Positive Sales Check
+
+if "sales" in profitandloss.columns:
+
+    sales_numeric = pd.to_numeric(
+        profitandloss["sales"],
+        errors="coerce"
+    )
+
+    bad_rows = profitandloss[
+        (sales_numeric <= 0)
+        | (sales_numeric.isnull())
+    ]
+
+    for index, row in bad_rows.iterrows():
+
+        failures.append({
+            "table": "Profit & Loss",
+            "rule": "DQ_09",
+            "row": index,
+            "issue": f"Invalid sales value: {row['sales']}"
+        })
+
+dq09_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_09"
+)
+
+print("DQ-09 Failures:", dq09_count)
+
+# DQ-10 : Positive Market Cap
+
+if "market_cap_crore" in market_cap.columns:
+
+    market_cap_numeric = pd.to_numeric(
+        market_cap["market_cap_crore"],
+        errors="coerce"
+    )
+
+    bad_rows = market_cap[
+        (market_cap_numeric <= 0)
+        | (market_cap_numeric.isnull())
+    ]
+
+    for index, row in bad_rows.iterrows():
+
+        failures.append({
+            "table": "Market Cap",
+            "rule": "DQ_10",
+            "row": index,
+            "issue": f"Invalid market cap: {row['market_cap_crore']}"
+        })
+
+dq10_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_10"
+)
+
+print("DQ-10 Failures:", dq10_count)
+
+# DQ-11 : Net Profit Not Null
+
+if "net_profit" in profitandloss.columns:
+
+    bad_rows = profitandloss[
+        profitandloss["net_profit"].isnull()
+    ]
+
+    for index, row in bad_rows.iterrows():
+
+        failures.append({
+            "table": "Profit & Loss",
+            "rule": "DQ_11",
+            "row": index,
+            "issue": "Missing net profit"
+        })
+
+dq11_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_11"
+)
+
+print("DQ-11 Failures:", dq11_count)
+
+# DQ-12 : EPS Not Null
+
+if "eps" in profitandloss.columns:
+
+    bad_rows = profitandloss[
+        profitandloss["eps"].isnull()
+    ]
+
+    for index, row in bad_rows.iterrows():
+
+        failures.append({
+            "table": "Profit & Loss",
+            "rule": "DQ_12",
+            "row": index,
+            "issue": "Missing EPS"
+        })
+
+dq12_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_12"
+)
+
+print("DQ-12 Failures:", dq12_count)
+
+# DQ-13 : Market Cap Year Validity
+
+if "year" in market_cap.columns:
+
+    year_numeric = pd.to_numeric(
+        market_cap["year"],
+        errors="coerce"
+    )
+
+    bad_rows = market_cap[
+        (year_numeric < 2000)
+        | (year_numeric > 2025)
+        | (year_numeric.isnull())
+    ]
+
+    for index, row in bad_rows.iterrows():
+
+        failures.append({
+            "table": "Market Cap",
+            "rule": "DQ_13",
+            "row": index,
+            "issue": f"Invalid year: {row['year']}"
+        })
+
+dq13_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_13"
+)
+
+print("DQ-13 Failures:", dq13_count)
+
+# DQ-14 : Duplicate Company-Year
+
+if "company_id" in profitandloss.columns and "year" in profitandloss.columns:
+
+    dup_rows = profitandloss[
+        profitandloss.duplicated(
+            subset=["company_id", "year"]
+        )
+    ]
+
+    for index, row in dup_rows.iterrows():
+
+        failures.append({
+            "table": "Profit & Loss",
+            "rule": "DQ_14",
+            "row": index,
+            "issue": "Duplicate company-year"
+        })
+
+dq14_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_14"
+)
+
+print("DQ-14 Failures:", dq14_count)
+
+# DQ-15 : Dividend Payout Check
+
+if "dividend_payout" in profitandloss.columns:
+
+    payout_numeric = pd.to_numeric(
+        profitandloss["dividend_payout"],
+        errors="coerce"
+    )
+
+    bad_rows = profitandloss[
+        payout_numeric < 0
+    ]
+
+    for index, row in bad_rows.iterrows():
+
+        failures.append({
+            "table": "Profit & Loss",
+            "rule": "DQ_15",
+            "row": index,
+            "issue": "Negative dividend payout"
+        })
+
+dq15_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_15"
+)
+
+print("DQ-15 Failures:", dq15_count)
+
+# DQ-16 : Company Exists In Master
+
+master_companies = set(
+    companies["id"].astype(str)
+)
+
+bad_rows = companies[
+    ~companies["id"].astype(str).isin(master_companies)
+]
+
+for index, row in bad_rows.iterrows():
+
+    failures.append({
+        "table": "Companies",
+        "rule": "DQ_16",
+        "row": index,
+        "issue": "Company missing from master"
+    })
+
+dq16_count = sum(
+    1 for x in failures
+    if x["rule"] == "DQ_16"
+)
+
+print("DQ-16 Failures:", dq16_count)
+
 failure_df = pd.DataFrame(failures)
 
 failure_df.to_csv(
@@ -273,5 +551,4 @@ failure_df.to_csv(
 
 print("\nValidation report generated!")
 
-print(financial_ratios.columns)
-print(financial_ratios.head())
+
