@@ -551,4 +551,38 @@ failure_df.to_csv(
 
 print("\nValidation report generated!")
 
+print("\nCompanies")
+print(companies.columns)
 
+print("\nProfit & Loss")
+print(profitandloss.columns)
+
+print("\nBalance Sheet")
+print(balancesheet.columns)
+
+print("\nCash Flow")
+print(cashflow.columns)
+
+print("\nAnalysis")
+print(analysis.columns)
+
+print("\nDocuments")
+print(documents.columns)
+
+print("\nFinancial Ratios")
+print(financial_ratios.columns)
+
+print("\nStock Prices")
+print(stock_prices.columns)
+
+print("\nPeer Groups")
+print(peer_groups.columns)
+
+print("\nSectors")
+print(sectors.columns)
+
+print("\nPros and Cons")
+print(prosandcons.columns)
+
+print("\nMarket Cap")
+print(market_cap.columns)
