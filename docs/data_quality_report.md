@@ -114,3 +114,24 @@ Findings:
 - Most datasets are complete.
 - Missing values exist in a few datasets due to unavailable source information.
 - Processed datasets have been saved successfully for downstream analytics and dashboard development.
+
+# Day 06 Manual Data Quality Review
+
+## Random Company Review
+ATGL, GAIL, APOLLOHOSP, EICHERMOT, BEL
+
+## Sample Verification
+ATGL records reviewed manually and values appeared valid.
+
+## Year Coverage
+Min Year: Dec 2012
+Max Year: TTM
+
+## Companies with <5 Years Data
+JIOFIN (3 years)
+
+## Foreign Key Check
+0 violations
+
+## Result
+Manual review completed successfully.
