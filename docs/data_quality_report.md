@@ -115,7 +115,7 @@ Findings:
 - Missing values exist in a few datasets due to unavailable source information.
 - Processed datasets have been saved successfully for downstream analytics and dashboard development.
 
-# Day 06 Manual Data Quality Review
+# Manual Data Quality Review
 
 ## Random Company Review
 ATGL, GAIL, APOLLOHOSP, EICHERMOT, BEL
