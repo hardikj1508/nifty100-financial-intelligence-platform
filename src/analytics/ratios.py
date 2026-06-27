@@ -118,3 +118,82 @@ def return_on_assets(
         return None
 
     return (net_profit / total_assets) * 100
+
+def debt_to_equity_ratio(
+    borrowings: float,
+    equity_capital: float,
+    reserves: float
+) -> Optional[float]:
+    """
+    Calculate Debt-to-Equity Ratio.
+
+    Formula:
+        Total Borrowings / (Equity Capital + Reserves)
+
+    Returns:
+        None if total equity is less than or equal to zero.
+    """
+
+    total_equity = equity_capital + reserves
+
+    if total_equity <= 0:
+        return None
+
+    return borrowings / total_equity
+
+def interest_coverage_ratio(
+    operating_profit: float,
+    other_income: float,
+    interest: float
+) -> Optional[float]:
+    """
+    Calculate Interest Coverage Ratio (ICR).
+
+    Formula:
+        (Operating Profit + Other Income) / Interest
+
+    Returns:
+        None if interest is zero.
+    """
+
+    if interest == 0:
+        return None
+
+    ebit = operating_profit + other_income
+
+    return ebit / interest
+
+def net_debt(
+    borrowings: float,
+    investments: float
+) -> float:
+    """
+    Calculate Net Debt.
+
+    Formula:
+        Borrowings - Investments
+
+    Returns:
+        Net Debt (can be negative).
+    """
+
+    return borrowings - investments
+
+def asset_turnover(
+    sales: float,
+    total_assets: float
+) -> Optional[float]:
+    """
+    Calculate Asset Turnover Ratio.
+
+    Formula:
+        Sales / Total Assets
+
+    Returns:
+        None if total assets is zero.
+    """
+
+    if total_assets == 0:
+        return None
+
+    return sales / total_assets
