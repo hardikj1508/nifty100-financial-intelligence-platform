@@ -1,4 +1,9 @@
-from src.analytics.cagr import calculate_cagr
+from src.analytics.cagr import (
+    calculate_cagr,
+    revenue_cagr,
+    pat_cagr,
+    eps_cagr,
+)
 
 def test_normal_cagr():
     value, flag = calculate_cagr(100, 200, 5)
@@ -40,3 +45,29 @@ def test_invalid_period():
 
     assert value is None
     assert flag == "INVALID_PERIOD"
+
+def test_revenue_cagr():
+    value, flag = revenue_cagr(100, 200, 5)
+
+    assert round(value, 2) == 14.87
+    assert flag == "NORMAL"
+
+
+def test_pat_cagr():
+    value, flag = pat_cagr(80, 160, 5)
+
+    assert round(value, 2) == 14.87
+    assert flag == "NORMAL"
+
+
+def test_eps_cagr():
+    value, flag = eps_cagr(10, 20, 5)
+
+    assert round(value, 2) == 14.87
+    assert flag == "NORMAL"
+
+def test_insufficient_data():
+    value, flag = calculate_cagr(100, 150, 3)
+
+    assert value is None
+    assert flag == "INSUFFICIENT_DATA"

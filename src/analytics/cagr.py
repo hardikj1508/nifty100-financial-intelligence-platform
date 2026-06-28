@@ -12,6 +12,7 @@ def calculate_cagr(
     beginning: float,
     ending: float,
     years: int,
+    required_years: int = 5,
 ) -> tuple[Optional[float], str]:
     """
     Calculate Compound Annual Growth Rate (CAGR).
@@ -25,6 +26,10 @@ def calculate_cagr(
     # Invalid number of years
     if years <= 0:
         return None, "INVALID_PERIOD"
+
+    # Check if the number of years meets the requirement
+    if years < required_years:
+        return None, "INSUFFICIENT_DATA"
 
     # Beginning value cannot be zero
     if beginning == 0:
@@ -45,6 +50,36 @@ def calculate_cagr(
     # Normal CAGR calculation
     cagr = ((ending / beginning) ** (1 / years) - 1) * 100
     return cagr, "NORMAL"
+
+def revenue_cagr(
+    beginning_revenue: float,
+    ending_revenue: float,
+    years: int,
+) -> tuple[Optional[float], str]:
+    """
+    Calculate Revenue CAGR.
+    """
+    return calculate_cagr(beginning_revenue, ending_revenue, years)
+
+def pat_cagr(
+    beginning_pat: float,
+    ending_pat: float,
+    years: int,
+) -> tuple[Optional[float], str]:
+    """
+    Calculate PAT (Net Profit) CAGR.
+    """
+    return calculate_cagr(beginning_pat, ending_pat, years)
+
+def eps_cagr(
+    beginning_eps: float,
+    ending_eps: float,
+    years: int,
+) -> tuple[Optional[float], str]:
+    """
+    Calculate EPS CAGR.
+    """
+    return calculate_cagr(beginning_eps, ending_eps, years)
 
 
 
