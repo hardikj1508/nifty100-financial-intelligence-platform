@@ -26,19 +26,9 @@ def net_profit_margin(
 
     return (net_profit / sales) * 100
 
-def operating_profit_margin(
-    operating_profit: float,
-    sales: float
-) -> Optional[float]:
-    """
-    Calculate Operating Profit Margin (%)
-
-    Formula:
-        (Operating Profit / Sales) * 100
-
-    Returns:
-        None if sales is zero.
-    """
+def operating_profit_margin(operating_profit, sales):
+    if operating_profit is None or sales is None:
+        return None
 
     if sales == 0:
         return None

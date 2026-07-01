@@ -1,4 +1,6 @@
+import csv
 import sqlite3
+
 
 from src.analytics.ratios import (
     net_profit_margin,
@@ -27,7 +29,19 @@ from src.analytics.cashflow_kpis import (
 )
 
 DATABASE = "data/database/nifty100.db"
+SECTOR_FILE = "data/processed/sectors_clean.csv"
 
+def load_financial_companies():
+    financial_companies = set()
+
+    with open(SECTOR_FILE, newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            if row["broad_sector"] == "Financials":
+                financial_companies.add(row["company_id"])
+
+    return financial_companies
 
 def get_connection():
     return sqlite3.connect(DATABASE)
@@ -37,6 +51,10 @@ def populate_financial_ratios():
     cursor = conn.cursor()
 
     print("Starting Ratio Engine...")
+
+    financial_companies = load_financial_companies()
+
+    print(f"Loaded {len(financial_companies)} financial companies:")
 
     cursor.execute("""
     SELECT
@@ -97,14 +115,14 @@ def populate_financial_ratios():
             financing_activity,
         ) = row
 
+        is_financial = company_id in financial_companies
+        
         # Calculate KPIs
+        
         npm = net_profit_margin(net_profit, sales)
         opm = operating_profit_margin(operating_profit, sales)
         roe = return_on_equity(net_profit, equity_capital, reserves)
         roa = return_on_assets(net_profit, total_assets)
-
-        print(company_id, year, npm, roe)
-        break
 
     # We'll write the logic here
 
