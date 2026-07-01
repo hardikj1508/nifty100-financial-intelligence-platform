@@ -77,8 +77,18 @@ def return_on_capital_employed(
         None if capital employed is less than or equal to zero.
     """
 
-    ebit = operating_profit + other_income
 
+    if (
+        operating_profit is None
+        or other_income is None
+        or equity_capital is None
+        or reserves is None
+        or borrowings is None
+    ):
+        return None
+
+    ebit = operating_profit + other_income
+    
     capital_employed = (
         equity_capital
         + reserves

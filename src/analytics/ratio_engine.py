@@ -85,7 +85,9 @@ def populate_financial_ratios():
 
         c.operating_activity,
         c.investing_activity,
-        c.financing_activity
+        c.financing_activity,
+        comp.roe_percentage, 
+        comp.roce_percentage          
 
     FROM profitandloss p
 
@@ -96,6 +98,9 @@ def populate_financial_ratios():
     JOIN cashflow c
     ON p.company_id = c.company_id
     AND p.year = c.year
+    
+    LEFT JOIN companies comp
+    ON p.company_id = comp.id               
     """)
 
     rows = cursor.fetchall()
@@ -121,6 +126,8 @@ def populate_financial_ratios():
             operating_activity,
             investing_activity,
             financing_activity,
+            expected_roe,
+            expected_roce,
         ) = row
 
         is_financial = company_id in financial_companies
@@ -150,7 +157,31 @@ def populate_financial_ratios():
         npm = net_profit_margin(net_profit, sales)
         opm = operating_profit_margin(operating_profit, sales)
         roe = return_on_equity(net_profit, equity_capital, reserves)
-        roa = return_on_assets(net_profit, total_assets)
+        roce = return_on_capital_employed(
+            operating_profit,
+            other_income,
+            equity_capital,
+            reserves,
+            borrowings
+        )
+        if (
+            roe is not None
+            and expected_roe is not None
+            and abs(roe - expected_roe) > 5
+        ):
+            log_issue(
+                f"{company_id} | {year} | ROE mismatch | "
+                f"Calculated={roe:.2f} | Source={expected_roe:.2f}"
+            )
+        if (
+            roce is not None
+            and expected_roce is not None
+            and abs(roce - expected_roce) > 5
+        ):
+            log_issue(
+                f"{company_id} | {year} | ROCE mismatch | "
+                f"Calculated={roce:.2f} | Source={expected_roce:.2f}"
+            )
         de_ratio = debt_to_equity_ratio(
             borrowings,
             equity_capital,
@@ -164,6 +195,7 @@ def populate_financial_ratios():
             log_issue(
                 f"{company_id} | {year} | High Debt-to-Equity ({de_ratio:.2f})"
             )
+        roa = return_on_assets(net_profit, total_assets)
 
     # We'll write the logic here
 
