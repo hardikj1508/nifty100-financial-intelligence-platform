@@ -30,6 +30,7 @@ from src.analytics.cashflow_kpis import (
 
 DATABASE = "data/database/nifty100.db"
 SECTOR_FILE = "data/processed/sectors_clean.csv"
+LOG_FILE = "reports/ratio_edge_cases.log"
 
 def load_financial_companies():
     financial_companies = set()
@@ -43,6 +44,10 @@ def load_financial_companies():
 
     return financial_companies
 
+def log_issue(message):
+    with open(LOG_FILE, "a", encoding="utf-8") as file:
+        file.write(message + "\n")
+
 def get_connection():
     return sqlite3.connect(DATABASE)
 
@@ -52,12 +57,15 @@ def populate_financial_ratios():
 
     print("Starting Ratio Engine...")
 
+    with open(LOG_FILE, "w", encoding="utf-8") as file:
+        file.write("===== Ratio Engine Edge Cases =====\n\n")
+
     financial_companies = load_financial_companies()
 
     print(f"Loaded {len(financial_companies)} financial companies:")
 
     cursor.execute("""
-    SELECT
+    SELECT DISTINCT
         p.company_id,
         p.year,
 
@@ -117,12 +125,45 @@ def populate_financial_ratios():
 
         is_financial = company_id in financial_companies
         
+        if operating_profit is None:
+            log_issue(
+                f"{company_id} | {year} | Missing Operating Profit"
+            )
+
+        if sales is None:
+            log_issue(
+                f"{company_id} | {year} | Missing Sales"
+         )
+
+        if equity_capital is None:
+            log_issue(
+                f"{company_id} | {year} | Missing Equity Capital"
+            )
+
+        if total_assets is None:
+            log_issue(
+                f"{company_id} | {year} | Missing Total Assets"
+            )
+
         # Calculate KPIs
         
         npm = net_profit_margin(net_profit, sales)
         opm = operating_profit_margin(operating_profit, sales)
         roe = return_on_equity(net_profit, equity_capital, reserves)
         roa = return_on_assets(net_profit, total_assets)
+        de_ratio = debt_to_equity_ratio(
+            borrowings,
+            equity_capital,
+            reserves
+            )
+        if (
+            de_ratio is not None
+            and de_ratio > 5
+            and not is_financial
+        ):
+            log_issue(
+                f"{company_id} | {year} | High Debt-to-Equity ({de_ratio:.2f})"
+            )
 
     # We'll write the logic here
 
