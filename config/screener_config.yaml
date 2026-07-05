@@ -1,0 +1,9 @@
+quality_compounder:
+  return_on_equity_pct:
+    min: 15
+
+  debt_to_equity:
+    max: 1
+
+  free_cash_flow_cr:
+    min: 0
