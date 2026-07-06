@@ -11,10 +11,60 @@ class ScreenerEngine:
         with open(config_path, "r") as file:
             self.config = yaml.safe_load(file)
 
-        self.df = pd.read_sql(
+        #Load financial ratios
+        financial_df = pd.read_sql(
             "SELECT * FROM financial_ratios",
             self.conn
         )
+
+        financial_df["year"] = financial_df["year"].astype(str)
+        financial_df["year"] = financial_df["year"].str.extract(r'(\d{4})')
+
+        #Load market cap
+        market_df = pd.read_sql(
+            "SELECT * FROM market_cap",
+            self.conn
+        )
+
+        #Load analysis
+        analysis_df = pd.read_sql(
+            "SELECT * FROM analysis",
+            self.conn
+        )
+
+        financial_df["year"] = financial_df["year"].astype(str)
+        market_df["year"] = market_df["year"].astype(str)      
+        
+        #Merge financial ratios with market cap
+        merged_df = financial_df.merge(
+            market_df,
+            on = ["company_id","year"],
+            how = "left"
+        )
+
+        #Merge analysis
+        merged_df = merged_df.merge(
+            analysis_df,
+            on = "company_id",
+            how = "left"
+        )
+
+        # Convert analysis columns from TEXT to numeric
+        numeric_cols = [
+            "compounded_sales_growth",
+            "compounded_profit_growth",
+            "stock_price_cagr",
+            "roe"
+        ]
+
+        for col in numeric_cols:
+            merged_df[col] = pd.to_numeric(
+                merged_df[col],
+                errors="coerce"
+            )
+
+        self.df = merged_df
+
     
     def apply_filters(self, preset_name):
 

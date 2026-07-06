@@ -7,3 +7,50 @@ quality_compounder:
 
   free_cash_flow_cr:
     min: 0
+
+value_pick:
+  pe_ratio:
+    max: 20
+
+  pb_ratio:
+    max: 3
+
+  debt_to_equity:
+    max: 2
+
+  dividend_yield_pct:
+    min: 1
+
+growth_accelerator:
+  compounded_profit_growth:
+    min: 20
+
+  compounded_sales_growth:
+    min: 15
+
+  debt_to_equity:
+    max: 2
+
+dividend_champion:
+  dividend_yield_pct:
+    min: 2
+
+  dividend_payout_ratio_pct:
+    max: 80
+
+  free_cash_flow_cr:
+    min: 0
+
+debt_free_blue_chip:
+  debt_to_equity:
+    max: 0
+
+  return_on_equity_pct:
+    min: 
+    
+turnaround_watch:
+  compounded_sales_growth:
+    min: 10
+
+  free_cash_flow_cr:
+    min: 0
