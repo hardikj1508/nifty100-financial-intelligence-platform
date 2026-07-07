@@ -5,15 +5,29 @@ engine = ScreenerEngine(
     config_path="config/screener_config.yaml"
 )
 
-presets = [
-    "quality_compounder",
-    "value_pick",
-    "growth_accelerator",
-    "dividend_champion",
-    "debt_free_blue_chip",
-    "turnaround_watch"
-]
+filtered = engine.apply_filters("quality_compounder")
 
-for preset in presets:
-    result = engine.apply_filters(preset)
-    print(f"{preset}: {result.shape[0]} companies")
+scored = engine.calculate_composite_score(filtered)
+
+print(scored[
+    [
+        "return_on_equity_pct",
+        "net_profit_margin_pct",
+        "compounded_sales_growth",
+        "compounded_profit_growth",
+        "debt_to_equity",
+        "interest_coverage"
+    ]
+].isna().sum())
+
+print(scored[
+    [
+        "return_on_equity_pct",
+        "net_profit_margin_pct",
+        "compounded_sales_growth",
+        "compounded_profit_growth",
+        "debt_to_equity",
+        "interest_coverage"
+    ]
+].head())
+

@@ -90,3 +90,67 @@ class ScreenerEngine:
                 ]
 
         return filtered_df
+    
+    def calculate_composite_score(self, df):
+
+        scored_df = df.copy()
+
+        # Profitability
+        roe_score = self.normalize_score(
+            scored_df["return_on_equity_pct"]
+        )
+
+        npm_score = self.normalize_score(
+            scored_df["net_profit_margin_pct"]
+        )   
+
+        # Growth
+        revenue_score = self.normalize_score(
+            scored_df["compounded_sales_growth"]
+        )
+
+        profit_score = self.normalize_score(
+            scored_df["compounded_profit_growth"]
+        )
+
+        # Leverage
+        debt_score = self.normalize_score(
+            scored_df["debt_to_equity"],
+            inverse=True
+        )
+
+        interest_score = self.normalize_score(
+            scored_df["interest_coverage"]
+        )   
+
+        # Composite Score (temporary version)
+        scored_df["composite_quality_score"] = (
+            roe_score * 0.25 +
+            npm_score * 0.20 +
+            revenue_score * 0.20 +
+            profit_score * 0.20 +
+            debt_score * 0.10 +
+            interest_score * 0.05
+        )
+
+        return scored_df
+
+    def normalize_score(self, series, inverse=False):
+        """
+        Convert a numeric column to a 0–100 score using min-max normalization.
+        If inverse=True, lower values receive higher scores.
+        """
+
+        min_val = series.min()
+        max_val = series.max()
+
+        # Avoid division by zero
+        if max_val == min_val:
+            return pd.Series(100, index=series.index)
+
+        score = ((series - min_val) / (max_val - min_val)) * 100
+
+        if inverse:
+            score = 100 - score
+
+        return score
