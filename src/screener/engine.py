@@ -166,3 +166,6 @@ class ScreenerEngine:
             )
             .reset_index(drop=True)
         )
+    
+    def get_top_companies(self, df, n=10):
+        return df.head(n)

@@ -14,12 +14,17 @@ ranked = engine.rank_companies(
     "composite_quality_score"
 )
 
+top10 = engine.get_top_companies(
+    ranked,
+    n=10
+)
+
 print(
-    ranked[
+    top10[
         [
             "company_id",
             "year",
             "composite_quality_score"
         ]
-    ].head(10)
+    ]
 )
