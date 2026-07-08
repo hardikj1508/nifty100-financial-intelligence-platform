@@ -9,25 +9,17 @@ filtered = engine.apply_filters("quality_compounder")
 
 scored = engine.calculate_composite_score(filtered)
 
-print(scored[
-    [
-        "return_on_equity_pct",
-        "net_profit_margin_pct",
-        "compounded_sales_growth",
-        "compounded_profit_growth",
-        "debt_to_equity",
-        "interest_coverage"
-    ]
-].isna().sum())
+ranked = engine.rank_companies(
+    scored,
+    "composite_quality_score"
+)
 
-print(scored[
-    [
-        "return_on_equity_pct",
-        "net_profit_margin_pct",
-        "compounded_sales_growth",
-        "compounded_profit_growth",
-        "debt_to_equity",
-        "interest_coverage"
-    ]
-].head())
-
+print(
+    ranked[
+        [
+            "company_id",
+            "year",
+            "composite_quality_score"
+        ]
+    ].head(10)
+)

@@ -105,12 +105,18 @@ class ScreenerEngine:
         )   
 
         # Growth
-        revenue_score = self.normalize_score(
-            scored_df["compounded_sales_growth"]
+        revenue_score = (
+            self.normalize_score(
+                scored_df["compounded_sales_growth"]
+            )
+            .fillna(50)
         )
 
-        profit_score = self.normalize_score(
-            scored_df["compounded_profit_growth"]
+        profit_score = (
+            self.normalize_score(
+                scored_df["compounded_profit_growth"]
+            )
+            .fillna(50)
         )
 
         # Leverage
@@ -136,15 +142,12 @@ class ScreenerEngine:
         return scored_df
 
     def normalize_score(self, series, inverse=False):
-        """
-        Convert a numeric column to a 0–100 score using min-max normalization.
-        If inverse=True, lower values receive higher scores.
-        """
+
+        series = series.fillna(series.median())
 
         min_val = series.min()
         max_val = series.max()
 
-        # Avoid division by zero
         if max_val == min_val:
             return pd.Series(100, index=series.index)
 
@@ -154,3 +157,12 @@ class ScreenerEngine:
             score = 100 - score
 
         return score
+    
+    def rank_companies(self, df, score_column):
+        return (
+            df.sort_values(
+                by=score_column,
+                ascending=False
+            )
+            .reset_index(drop=True)
+        )
