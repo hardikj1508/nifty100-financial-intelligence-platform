@@ -5,26 +5,6 @@ engine = ScreenerEngine(
     config_path="config/screener_config.yaml"
 )
 
-filtered = engine.apply_filters("quality_compounder")
-
-scored = engine.calculate_composite_score(filtered)
-
-ranked = engine.rank_companies(
-    scored,
-    "composite_quality_score"
-)
-
-top10 = engine.get_top_companies(
-    ranked,
-    n=10
-)
-
-print(
-    top10[
-        [
-            "company_id",
-            "year",
-            "composite_quality_score"
-        ]
-    ]
+engine.export_screener(
+    "reports/screener_output.xlsx"
 )
