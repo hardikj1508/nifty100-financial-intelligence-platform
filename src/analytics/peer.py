@@ -21,6 +21,17 @@ class PeerEngine:
             self.conn
         )
 
+        # Temporary safeguard against duplicate company-year rows
+        self.ratio_df = (
+            self.ratio_df
+            .sort_values("id")
+            .drop_duplicates(
+                subset=["company_id", "year"],
+                keep="first"
+            )
+            .reset_index(drop=True)
+)
+
         self.sector_df = pd.read_sql(
             "SELECT * FROM sectors",
             self.conn
@@ -111,6 +122,9 @@ class PeerEngine:
             "percentile_rank",
             ascending=False
         )
+    
+        print(df[df["year"] == "Mar 2024"][["company_id", "year"]])
+        print("Rows:", len(df[df["year"] == "Mar 2024"]))
     
     def create_peer_percentiles_table(self):
 

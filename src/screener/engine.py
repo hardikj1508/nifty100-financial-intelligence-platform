@@ -18,6 +18,17 @@ class ScreenerEngine:
             self.conn
         )
 
+        # Remove duplicate company-year records (temporary safeguard)
+        financial_df = (
+            financial_df
+            .sort_values("id")
+            .drop_duplicates(
+                subset=["company_id", "year"],
+                keep="first"
+            )
+            .reset_index(drop=True)
+        )
+
         financial_df["year"] = financial_df["year"].astype(str)
         financial_df["year"] = financial_df["year"].str.extract(r'(\d{4})')
 
