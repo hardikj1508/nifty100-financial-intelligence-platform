@@ -147,7 +147,6 @@ class PeerComparisonReport:
             values="percentile_rank"
         ).reset_index()
 
-        # Rename percentile columns
         pivot = pivot.rename(
             columns={
                 col: f"{col}_percentile"
@@ -218,7 +217,6 @@ class PeerComparisonReport:
                 for cell in sheet[1]
             ]
 
-            # Find all percentile columns
             percentile_columns = []
 
             for i, header in enumerate(headers, start=1):
@@ -229,10 +227,9 @@ class PeerComparisonReport:
                 ):
                     percentile_columns.append(i)
 
-            # Find benchmark column
+            
             benchmark_col = headers.index("is_benchmark") + 1
 
-            # Highlight benchmark company row
             for row in range(2, sheet.max_row + 1):
 
                 benchmark = sheet.cell(
@@ -249,7 +246,6 @@ class PeerComparisonReport:
                             column=col
                         ).fill = GOLD_FILL
 
-            # Color percentile columns
             for col in percentile_columns:
 
                 for row in range(2, sheet.max_row + 1):
@@ -288,7 +284,6 @@ class PeerComparisonReport:
 
             last_row = sheet.max_row + 1
 
-            # Label
             sheet.cell(row=last_row, column=1).value = "Median"
 
             headers = [
@@ -300,7 +295,6 @@ class PeerComparisonReport:
 
                 header = headers[col - 1]
 
-                # Skip text columns
                 if header in [
                     "company_name",
                     "company_id",
