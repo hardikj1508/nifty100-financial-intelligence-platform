@@ -156,3 +156,117 @@ def get_sector_counts():
     """
 
     return pd.read_sql(query, conn)
+
+@st.cache_data(ttl=600)
+def get_total_companies():
+    conn = get_connection()
+
+    query = """
+    SELECT COUNT(*) AS total
+    FROM companies
+    """
+
+    return pd.read_sql(query, conn).iloc[0]["total"]
+
+@st.cache_data(ttl=600)
+def get_average_roe(year):
+    conn = get_connection()
+
+    query = """
+    SELECT AVG(return_on_equity_pct) AS avg_roe
+    FROM financial_ratios
+    WHERE year = ?
+    """
+
+    df = pd.read_sql(query, conn, params=[year])
+
+    return df.iloc[0]["avg_roe"]
+
+@st.cache_data(ttl=600)
+def get_median_de(year):
+    conn = get_connection()
+
+    query = """
+    SELECT debt_to_equity
+    FROM financial_ratios
+    WHERE year = ?
+    """
+
+    df = pd.read_sql(query, conn, params=[year])
+
+    return df["debt_to_equity"].median()
+
+@st.cache_data(ttl=600)
+def get_debt_free_count(year):
+    conn = get_connection()
+
+    query = """
+    SELECT COUNT(*) AS total
+    FROM financial_ratios
+    WHERE year = ?
+    AND debt_to_equity = 0
+    """
+
+    df = pd.read_sql(query, conn, params=[year])
+
+    return df.iloc[0]["total"]
+
+@st.cache_data(ttl=600)
+def get_median_net_profit_margin(year):
+
+    conn = get_connection()
+
+    query = """
+    SELECT net_profit_margin_pct
+    FROM financial_ratios
+    WHERE year = ?
+    """
+
+    df = pd.read_sql(query, conn, params=[year])
+
+    conn.close()
+
+    return df["net_profit_margin_pct"].median()
+
+@st.cache_data(ttl=600)
+def get_sector_breakdown():
+
+    conn = get_connection()
+
+    query = """
+    SELECT broad_sector,
+           COUNT(*) AS companies
+    FROM sectors
+    GROUP BY broad_sector
+    ORDER BY companies DESC
+    """
+
+    df = pd.read_sql(query, conn)
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_top_companies(year):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        c.company_name,
+        f.return_on_equity_pct,
+        f.net_profit_margin_pct
+    FROM financial_ratios f
+    JOIN companies c
+        ON f.company_id = c.id
+    WHERE f.year = ?
+    ORDER BY f.return_on_equity_pct DESC
+    LIMIT 5
+    """
+
+    df = pd.read_sql(query, conn, params=[year])
+
+    conn.close()
+
+    return df
