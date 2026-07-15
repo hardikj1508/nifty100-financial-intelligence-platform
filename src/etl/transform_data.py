@@ -42,7 +42,11 @@ print(financial_ratios.head())
 print("\nMissing Values:")
 print(financial_ratios.isnull().sum())
 print("\nDuplicate Rows:")
-print(financial_ratios.duplicated().sum())
+print(
+    financial_ratios.duplicated(
+        subset=financial_ratios.columns.drop("id")
+    ).sum()
+)
 print("\nShape:")
 print(financial_ratios.shape)
 
@@ -98,6 +102,11 @@ print("\nDuplicate Rows:")
 print(cashflow.duplicated().sum())
 print("\nShape:")
 print(cashflow.shape)
+
+cashflow = cashflow.drop_duplicates(
+    subset=["company_id", "year"],
+    keep="last"
+)
 
 cashflow.to_csv(
     "data/processed/cashflow_clean.csv",

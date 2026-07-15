@@ -270,3 +270,46 @@ def get_top_companies(year):
     conn.close()
 
     return df
+
+@st.cache_data(ttl=600)
+def get_company_profile(company_name):
+
+    conn = get_connection()
+
+    query = """
+    SELECT *
+    FROM companies
+    WHERE company_name = ?
+    """
+
+    df = pd.read_sql(query, conn, params=[company_name])
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_screener_data(year):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        c.company_name,
+        s.broad_sector,
+        f.return_on_equity_pct,
+        f.debt_to_equity,
+        f.net_profit_margin_pct
+    FROM financial_ratios f
+    JOIN companies c
+        ON f.company_id = c.id
+    LEFT JOIN sectors s
+        ON c.id = s.company_id
+    WHERE f.year = ?
+    """
+
+    df = pd.read_sql(query, conn, params=[year])
+
+    conn.close()
+
+    return df
