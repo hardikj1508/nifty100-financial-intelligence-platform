@@ -12,10 +12,19 @@ def get_companies():
 
     conn = get_connection()
 
-    return pd.read_sql(
-        "SELECT * FROM companies",
-        conn
-    )
+    query = """
+    SELECT
+        id,
+        company_name
+    FROM companies
+    ORDER BY company_name
+    """
+
+    df = pd.read_sql(query, conn)
+
+    conn.close()
+
+    return df
 
 @st.cache_data(ttl=600)
 def get_ratios(company_id, year=None):
@@ -309,6 +318,89 @@ def get_screener_data(year):
     """
 
     df = pd.read_sql(query, conn, params=[year])
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_peer_comparison(company_name, year):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        c.company_name,
+        s.broad_sector,
+        f.return_on_equity_pct,
+        f.debt_to_equity,
+        f.net_profit_margin_pct,
+        f.earnings_per_share
+
+    FROM financial_ratios f
+
+    JOIN companies c
+    ON f.company_id = c.id
+
+    LEFT JOIN sectors s
+    ON c.id = s.company_id
+
+    WHERE
+    s.broad_sector = (
+
+        SELECT broad_sector
+        FROM sectors
+        WHERE company_id = ?
+
+    )
+
+    AND f.year = ?
+
+    ORDER BY return_on_equity_pct DESC
+    """
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=[company_name, year]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_peer_average(company_id, year):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        AVG(f.return_on_equity_pct) AS return_on_equity_pct,
+        AVG(f.debt_to_equity) AS debt_to_equity,
+        AVG(f.net_profit_margin_pct) AS net_profit_margin_pct,
+        AVG(f.earnings_per_share) AS earnings_per_share
+
+    FROM financial_ratios f
+
+    JOIN sectors s
+        ON f.company_id = s.company_id
+
+    WHERE
+        s.broad_sector = (
+            SELECT broad_sector
+            FROM sectors
+            WHERE company_id = ?
+        )
+
+        AND f.year = ?
+    """
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=[company_id, year]
+    )
 
     conn.close()
 
