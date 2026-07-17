@@ -405,3 +405,121 @@ def get_peer_average(company_id, year):
     conn.close()
 
     return df
+
+@st.cache_data(ttl=600)
+def get_trend_data(company_id):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        year,
+        net_profit_margin_pct,
+        operating_profit_margin_pct,
+        return_on_equity_pct,
+        debt_to_equity,
+        interest_coverage,
+        asset_turnover,
+        earnings_per_share,
+        book_value_per_share
+    FROM financial_ratios
+    WHERE company_id = ?
+    ORDER BY year
+    """
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=[company_id]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_sector_data(sector):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        c.company_name,
+        s.broad_sector,
+        f.return_on_equity_pct,
+        f.net_profit_margin_pct,
+        f.debt_to_equity,
+        f.free_cash_flow_cr
+    FROM financial_ratios f
+
+    JOIN companies c
+        ON f.company_id = c.id
+
+    JOIN sectors s
+        ON c.id = s.company_id
+
+    WHERE s.broad_sector = ?
+      AND f.year = 'Mar 2024'
+    """
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=[sector]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_capital_data(company_id):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        year,
+        cash_from_operations_cr,
+        free_cash_flow_cr,
+        capex_cr,
+        total_debt_cr
+    FROM financial_ratios
+    WHERE company_id = ?
+    ORDER BY year
+    """
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=[company_id]
+    )
+
+    conn.close()
+
+    return df
+
+@st.cache_data(ttl=600)
+def get_company_reports(company_id):
+
+    conn = get_connection()
+
+    query = """
+    SELECT
+        company_name,
+        website,
+        nse_profile,
+        bse_profile
+    FROM companies
+    WHERE id = ?
+    """
+
+    df = pd.read_sql(
+        query,
+        conn,
+        params=[company_id]
+    )
+
+    conn.close()
+
+    return df

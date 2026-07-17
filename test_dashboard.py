@@ -1,16 +1,7 @@
 from src.dashboard.utils.db import *
 
-conn = get_connection()
+df = get_company_reports("ABB")
 
-query = """
-SELECT company_id,
-       year,
-       return_on_equity_pct
-FROM financial_ratios
-WHERE company_id IN ('ABB','BEL','HAL','LT')
-AND year='Mar 2019'
-"""
+print(df)
 
-print(pd.read_sql(query, conn))
-
-conn.close()
+print(df.columns.tolist())
