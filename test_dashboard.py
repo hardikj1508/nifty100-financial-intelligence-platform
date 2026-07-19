@@ -1,7 +1,15 @@
-from src.dashboard.utils.db import *
+from src.dashboard.utils.db import get_connection
+import pandas as pd
 
-df = get_company_reports("ABB")
+conn = get_connection()
 
-print(df)
+df = pd.read_sql("""
+SELECT company_id, COUNT(*) AS years
+FROM financial_ratios
+GROUP BY company_id
+ORDER BY years ASC
+""", conn)
 
-print(df.columns.tolist())
+print(df.head(20))
+
+conn.close()
