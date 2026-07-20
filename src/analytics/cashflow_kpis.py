@@ -143,3 +143,232 @@ def capital_allocation_pattern(
         return "LIQUIDATING_ASSETS"
 
     return "MIXED"
+
+import pandas as pd
+from pathlib import Path
+
+CASHFLOW_FILE = "data/processed/cashflow_clean.csv"
+FINANCIAL_FILE = "data/processed/financial_ratios_clean.csv"
+COMPANIES_FILE = "data/processed/companies_clean.csv"
+
+OUTPUT_DIR = Path("output")
+OUTPUT_DIR.mkdir(exist_ok=True)
+
+OUTPUT_FILE = OUTPUT_DIR / "cashflow_intelligence.xlsx"
+DISTRESS_FILE = OUTPUT_DIR / "distress_alerts.csv"
+
+def load_data():
+
+    cashflow = pd.read_csv(CASHFLOW_FILE)
+
+    financial = pd.read_csv(FINANCIAL_FILE)
+
+    companies = pd.read_csv(COMPANIES_FILE)
+
+    return cashflow, financial, companies
+
+def prepare_dataset():
+
+    cashflow, financial, companies = load_data()
+
+    cashflow["year"] = (
+        cashflow["year"]
+        .astype(str)
+        .str.extract(r"(\d{2})")[0]
+        .astype(int)
+        + 2000
+    )
+
+    financial["year"] = (
+        financial["year"]
+        .astype(str)
+        .str.extract(r"(\d{4})")[0]
+        .astype(int)
+    )
+
+    financial = financial.drop_duplicates(
+        subset=["company_id", "year"]
+    )
+
+    df = financial.merge(
+        cashflow,
+        on=["company_id", "year"],
+        how="left"
+    )
+
+    df = df.merge(
+        companies[
+            [
+                "id",
+                "company_name",
+                "roe_percentage",
+                "roce_percentage"
+            ]
+        ],
+        left_on="company_id",
+        right_on="id",
+        how="left"
+    )
+
+    df = df.drop(columns=["id_x", "id_y"], errors="ignore")
+
+    return df
+
+def generate():
+
+    df = prepare_dataset()
+
+    latest = (
+        df.sort_values("year")
+          .groupby("company_id")
+          .tail(1)
+          .copy()
+    )
+
+    print("\nUnique companies:", latest["company_id"].nunique())
+
+    print("\nCompany IDs:")
+    print(sorted(latest["company_id"].unique()))    
+
+    results = []
+
+    distress_rows = []
+
+    for _, row in latest.iterrows():
+
+        company = row["company_id"]
+
+        # ----------------------------
+        # CFO Quality
+        # ----------------------------
+
+        cfo_score, cfo_label = cfo_quality_score(
+            row["cash_from_operations_cr"],
+            row["net_profit_margin_pct"]
+        )
+
+        # ----------------------------
+        # CapEx Intensity
+        # ----------------------------
+
+        capex_pct, capex_label = capex_intensity(
+            row["capex_cr"],
+            row["cash_from_operations_cr"]
+        )
+
+        # ----------------------------
+        # Free Cash Flow
+        # ----------------------------
+
+        fcf = free_cash_flow(
+            row["operating_activity"],
+            row["investing_activity"]
+        )
+
+        fcf_conversion = fcf_conversion_rate(
+            fcf,
+            row["operating_profit_margin_pct"]
+        )
+
+        # ----------------------------
+        # Distress
+        # ----------------------------
+
+        distress = (
+            row["operating_activity"] < 0
+            and
+            row["financing_activity"] > 0
+        )
+
+        print(
+            company,
+            row["operating_activity"],
+            row["financing_activity"]
+        )
+
+        if distress:
+
+            distress_rows.append({
+
+                "company_id": company,
+
+                "company_name": row["company_name"],
+
+                "year": row["year"],
+
+                "CFO": row["operating_activity"],
+
+                "CFF": row["financing_activity"],
+
+                "Net Cash Flow": row["net_cash_flow"]
+
+            })
+
+        # ----------------------------
+        # Deleveraging
+        # ----------------------------
+
+        deleveraging = row["financing_activity"] < 0
+
+        # ----------------------------
+        # Capital Allocation
+        # ----------------------------
+
+        allocation = capital_allocation_pattern(
+
+            row["operating_activity"],
+
+            row["investing_activity"],
+
+            row["financing_activity"]
+
+        )
+
+        results.append({
+
+            "company_id": company,
+
+            "company_name": row["company_name"],
+
+            "year": row["year"],
+
+            "cfo_quality_score": cfo_score,
+
+            "cfo_quality_label": cfo_label,
+
+            "capex_intensity_pct": capex_pct,
+
+            "capex_label": capex_label,
+
+            "fcf_conversion_pct": fcf_conversion,
+
+            "distress_flag": distress,
+
+            "deleveraging_flag": deleveraging,
+
+            "capital_allocation_label": allocation
+
+        })
+
+    intelligence = pd.DataFrame(results)
+
+    distress = pd.DataFrame(distress_rows)
+
+    intelligence.to_excel(OUTPUT_FILE, index=False)
+
+    distress.to_csv(DISTRESS_FILE, index=False)
+
+    print("=" * 60)
+    print("Cash Flow Intelligence Generated")
+    print("=" * 60)
+
+    print("Companies :", len(intelligence))
+
+    print("Distress Alerts :", len(distress))
+
+    print(f"\nSaved -> {OUTPUT_FILE}")
+
+    print(f"Saved -> {DISTRESS_FILE}")
+
+if __name__ == "__main__":
+    generate()
