@@ -185,29 +185,67 @@ The project generates various analytical outputs, including:
 
 ## 📸 Dashboard Preview
 
-### 🏠 Home
-![Home](docs/screenshots/home.png)
+### 🏠 Home Dashboard
+
+Interactive overview of the Nifty 100 Financial Intelligence Platform.
+
+![Home Dashboard](docs/screenshots/01_home.png)
+
+---
 
 ### 🏢 Company Profile
-![Company Profile](docs/screenshots/profile.png)
+
+View company information, KPIs, business details, and market links.
+
+![Company Profile](docs/screenshots/02_profile.png)
+
+---
 
 ### 🔍 Stock Screener
-![Stock Screener](docs/screenshots/screener.png)
+
+Filter companies using multiple financial metrics.
+
+![Stock Screener](docs/screenshots/03_screener.png)
+
+---
 
 ### 🤝 Peer Comparison
-![Peer Comparison](docs/screenshots/peer_comparison.png)
+
+Compare companies with sector peers using interactive radar charts.
+
+![Peer Comparison](docs/screenshots/04_peer_comparison.png)
+
+---
 
 ### 📈 Financial Trends
-![Financial Trends](docs/screenshots/financial_trends.png)
+
+Analyze multi-year financial performance.
+
+![Financial Trends](docs/screenshots/05_financial_trends.png)
+
+---
 
 ### 🏭 Sector Analysis
-![Sector Analysis](docs/screenshots/sector_analysis.png)
+
+Compare financial performance across sectors.
+
+![Sector Analysis](docs/screenshots/06_sector_analysis.png)
+
+---
 
 ### 💰 Capital Allocation
-![Capital Allocation](docs/screenshots/capital_allocation.png)
+
+Review CapEx, Free Cash Flow, Dividends, and Buybacks.
+
+![Capital Allocation](docs/screenshots/07_capital_allocation.png)
+
+---
 
 ### 📑 Reports
-![Reports](docs/screenshots/reports.png)
+
+Access downloadable reports and generated analytics.
+
+![Reports](docs/screenshots/08_reports.png)
 
 ## 🚀 Future Enhancements
 
