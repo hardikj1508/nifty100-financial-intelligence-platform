@@ -1,0 +1,57 @@
+id,peer_group_name,company_id,is_benchmark
+1,Private Banks,HDFCBANK,True
+2,Private Banks,ICICIBANK,False
+3,Private Banks,AXISBANK,False
+4,Private Banks,KOTAKBANK,False
+5,Private Banks,INDUSINDBK,False
+6,Public Sector Banks,SBIN,True
+7,Public Sector Banks,BANKBARODA,False
+8,Public Sector Banks,CANBK,False
+9,Public Sector Banks,PNB,False
+10,IT Services,TCS,True
+11,IT Services,INFY,False
+12,IT Services,HCLTECH,False
+13,IT Services,TECHM,False
+14,IT Services,LTIM,False
+15,Pharmaceuticals,SUNPHARMA,True
+16,Pharmaceuticals,CIPLA,False
+17,Pharmaceuticals,DRREDDY,False
+18,Pharmaceuticals,DIVISLAB,False
+19,Pharmaceuticals,TORNTPHARM,False
+20,Automobiles,MARUTI,True
+21,Automobiles,TATAMOTORS,False
+22,Automobiles,M&M,False
+23,Automobiles,BAJAJ-AUTO,False
+24,Automobiles,EICHERMOT,False
+25,Automobiles,HEROMOTOCO,False
+26,Automobiles,TVSMOTOR,False
+27,Life Insurance,LICI,True
+28,Life Insurance,HDFCLIFE,False
+29,Life Insurance,SBILIFE,False
+30,Life Insurance,ICICIPRULI,False
+31,Oil & Gas,RELIANCE,True
+32,Oil & Gas,ONGC,False
+33,Oil & Gas,BPCL,False
+34,Oil & Gas,IOC,False
+35,Oil & Gas,GAIL,False
+36,Power & Utilities,NTPC,True
+37,Power & Utilities,POWERGRID,False
+38,Power & Utilities,TATAPOWER,False
+39,Power & Utilities,ADANIPOWER,False
+40,Power & Utilities,NHPC,False
+41,Power & Utilities,JSWENERGY,False
+42,Power & Utilities,ADANIGREEN,False
+43,Steel,TATASTEEL,True
+44,Steel,JSWSTEEL,False
+45,Steel,JINDALSTEL,False
+46,Steel,HINDALCO,False
+47,FMCG,HINDUNILVR,True
+48,FMCG,ITC,False
+49,FMCG,BRITANNIA,False
+50,FMCG,DABUR,False
+51,FMCG,NESTLEIND,False
+52,FMCG,GODREJCP,False
+53,FMCG,TATACONSUM,False
+54,Consumer Finance,BAJFINANCE,True
+55,Consumer Finance,CHOLAFIN,False
+56,Consumer Finance,SHRIRAMFIN,False

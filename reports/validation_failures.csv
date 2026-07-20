@@ -1,0 +1,699 @@
+table,rule,row,issue
+Balance Sheet,DQ_03,1033,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1034,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1035,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1036,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1037,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1038,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1039,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1040,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1041,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1042,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1043,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1044,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1045,Invalid company_id: ZYDUSLIFE
+Balance Sheet,DQ_03,1059,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1060,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1061,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1062,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1063,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1064,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1065,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1066,Invalid company_id: ZOMATO
+Balance Sheet,DQ_03,1067,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1068,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1069,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1070,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1071,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1072,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1073,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1074,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1075,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1076,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1077,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1078,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1079,Invalid company_id: WIPRO
+Balance Sheet,DQ_03,1080,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1081,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1082,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1083,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1084,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1085,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1086,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1087,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1088,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1089,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1090,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1091,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1092,Invalid company_id: VEDL
+Balance Sheet,DQ_03,1118,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1119,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1120,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1121,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1122,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1123,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1124,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1125,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1126,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1127,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1128,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1129,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1130,Invalid company_id: UNITDSPR
+Balance Sheet,DQ_03,1131,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1132,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1133,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1134,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1135,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1136,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1137,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1138,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1139,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1140,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1141,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1142,Invalid company_id: UNIONBANK
+Balance Sheet,DQ_03,1156,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1157,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1158,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1159,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1160,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1161,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1162,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1163,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1164,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1165,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1166,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1167,Invalid company_id: ULTRACEMCO
+Balance Sheet,DQ_03,1168,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,126,Invalid company_id: AGTL
+Cash Flow,DQ_03,127,Invalid company_id: AGTL
+Cash Flow,DQ_03,128,Invalid company_id: AGTL
+Cash Flow,DQ_03,129,Invalid company_id: AGTL
+Cash Flow,DQ_03,130,Invalid company_id: AGTL
+Cash Flow,DQ_03,131,Invalid company_id: AGTL
+Cash Flow,DQ_03,132,Invalid company_id: AGTL
+Cash Flow,DQ_03,1098,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1099,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1100,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1101,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1102,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1103,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1104,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1105,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1106,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1107,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1108,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1109,Invalid company_id: ULTRACEMCO
+Cash Flow,DQ_03,1110,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1111,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1112,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1113,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1114,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1115,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1116,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1117,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1118,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1119,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1120,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1121,Invalid company_id: UNIONBANK
+Cash Flow,DQ_03,1122,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1123,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1124,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1125,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1126,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1127,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1128,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1129,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1130,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1131,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1132,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1133,Invalid company_id: UNITDSPR
+Cash Flow,DQ_03,1134,Invalid company_id: VBL
+Cash Flow,DQ_03,1135,Invalid company_id: VBL
+Cash Flow,DQ_03,1136,Invalid company_id: VBL
+Cash Flow,DQ_03,1137,Invalid company_id: VBL
+Cash Flow,DQ_03,1138,Invalid company_id: VBL
+Cash Flow,DQ_03,1139,Invalid company_id: VBL
+Cash Flow,DQ_03,1140,Invalid company_id: VBL
+Cash Flow,DQ_03,1141,Invalid company_id: VBL
+Cash Flow,DQ_03,1142,Invalid company_id: VBL
+Cash Flow,DQ_03,1143,Invalid company_id: VBL
+Cash Flow,DQ_03,1144,Invalid company_id: VBL
+Cash Flow,DQ_03,1145,Invalid company_id: VBL
+Cash Flow,DQ_03,1146,Invalid company_id: VEDL
+Cash Flow,DQ_03,1147,Invalid company_id: VEDL
+Cash Flow,DQ_03,1148,Invalid company_id: VEDL
+Cash Flow,DQ_03,1149,Invalid company_id: VEDL
+Cash Flow,DQ_03,1150,Invalid company_id: VEDL
+Cash Flow,DQ_03,1151,Invalid company_id: VEDL
+Cash Flow,DQ_03,1152,Invalid company_id: VEDL
+Cash Flow,DQ_03,1153,Invalid company_id: VEDL
+Cash Flow,DQ_03,1154,Invalid company_id: VEDL
+Cash Flow,DQ_03,1155,Invalid company_id: VEDL
+Cash Flow,DQ_03,1156,Invalid company_id: VEDL
+Cash Flow,DQ_03,1157,Invalid company_id: VEDL
+Cash Flow,DQ_03,1158,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1159,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1160,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1161,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1162,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1163,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1164,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1165,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1166,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1167,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1168,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1169,Invalid company_id: WIPRO
+Cash Flow,DQ_03,1170,Invalid company_id: ZOMATO
+Cash Flow,DQ_03,1171,Invalid company_id: ZOMATO
+Cash Flow,DQ_03,1172,Invalid company_id: ZOMATO
+Cash Flow,DQ_03,1173,Invalid company_id: ZOMATO
+Cash Flow,DQ_03,1174,Invalid company_id: ZOMATO
+Cash Flow,DQ_03,1175,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1176,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1177,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1178,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1179,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1180,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1181,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1182,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1183,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1184,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1185,Invalid company_id: ZYDUSLIFE
+Cash Flow,DQ_03,1186,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1457,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1458,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1459,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1460,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1461,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1462,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1463,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1464,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1465,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1466,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1467,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1468,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1469,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1470,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1471,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1472,Invalid company_id: ULTRACEMCO
+Documents,DQ_03,1473,Invalid company_id: UNIONBANK
+Documents,DQ_03,1474,Invalid company_id: UNIONBANK
+Documents,DQ_03,1475,Invalid company_id: UNIONBANK
+Documents,DQ_03,1476,Invalid company_id: UNIONBANK
+Documents,DQ_03,1477,Invalid company_id: UNIONBANK
+Documents,DQ_03,1478,Invalid company_id: UNIONBANK
+Documents,DQ_03,1479,Invalid company_id: UNIONBANK
+Documents,DQ_03,1480,Invalid company_id: UNIONBANK
+Documents,DQ_03,1481,Invalid company_id: UNIONBANK
+Documents,DQ_03,1482,Invalid company_id: UNIONBANK
+Documents,DQ_03,1483,Invalid company_id: UNIONBANK
+Documents,DQ_03,1484,Invalid company_id: UNIONBANK
+Documents,DQ_03,1485,Invalid company_id: UNIONBANK
+Documents,DQ_03,1486,Invalid company_id: UNIONBANK
+Documents,DQ_03,1487,Invalid company_id: UNIONBANK
+Documents,DQ_03,1488,Invalid company_id: UNIONBANK
+Documents,DQ_03,1489,Invalid company_id: UNITDSPR
+Documents,DQ_03,1490,Invalid company_id: UNITDSPR
+Documents,DQ_03,1491,Invalid company_id: UNITDSPR
+Documents,DQ_03,1492,Invalid company_id: UNITDSPR
+Documents,DQ_03,1493,Invalid company_id: UNITDSPR
+Documents,DQ_03,1494,Invalid company_id: UNITDSPR
+Documents,DQ_03,1495,Invalid company_id: UNITDSPR
+Documents,DQ_03,1496,Invalid company_id: UNITDSPR
+Documents,DQ_03,1497,Invalid company_id: UNITDSPR
+Documents,DQ_03,1498,Invalid company_id: UNITDSPR
+Documents,DQ_03,1499,Invalid company_id: UNITDSPR
+Documents,DQ_03,1500,Invalid company_id: UNITDSPR
+Documents,DQ_03,1501,Invalid company_id: UNITDSPR
+Documents,DQ_03,1502,Invalid company_id: UNITDSPR
+Documents,DQ_03,1503,Invalid company_id: UNITDSPR
+Documents,DQ_03,1504,Invalid company_id: UNITDSPR
+Documents,DQ_03,1505,Invalid company_id: VBL
+Documents,DQ_03,1506,Invalid company_id: VBL
+Documents,DQ_03,1507,Invalid company_id: VBL
+Documents,DQ_03,1508,Invalid company_id: VBL
+Documents,DQ_03,1509,Invalid company_id: VBL
+Documents,DQ_03,1510,Invalid company_id: VBL
+Documents,DQ_03,1511,Invalid company_id: VBL
+Documents,DQ_03,1512,Invalid company_id: VBL
+Documents,DQ_03,1513,Invalid company_id: VBL
+Documents,DQ_03,1514,Invalid company_id: VBL
+Documents,DQ_03,1515,Invalid company_id: VBL
+Documents,DQ_03,1516,Invalid company_id: VBL
+Documents,DQ_03,1517,Invalid company_id: VBL
+Documents,DQ_03,1518,Invalid company_id: VBL
+Documents,DQ_03,1519,Invalid company_id: VBL
+Documents,DQ_03,1520,Invalid company_id: VBL
+Documents,DQ_03,1521,Invalid company_id: VEDL
+Documents,DQ_03,1522,Invalid company_id: VEDL
+Documents,DQ_03,1523,Invalid company_id: VEDL
+Documents,DQ_03,1524,Invalid company_id: VEDL
+Documents,DQ_03,1525,Invalid company_id: VEDL
+Documents,DQ_03,1526,Invalid company_id: VEDL
+Documents,DQ_03,1527,Invalid company_id: VEDL
+Documents,DQ_03,1528,Invalid company_id: VEDL
+Documents,DQ_03,1529,Invalid company_id: VEDL
+Documents,DQ_03,1530,Invalid company_id: VEDL
+Documents,DQ_03,1531,Invalid company_id: VEDL
+Documents,DQ_03,1532,Invalid company_id: VEDL
+Documents,DQ_03,1533,Invalid company_id: VEDL
+Documents,DQ_03,1534,Invalid company_id: VEDL
+Documents,DQ_03,1535,Invalid company_id: VEDL
+Documents,DQ_03,1536,Invalid company_id: VEDL
+Documents,DQ_03,1537,Invalid company_id: WIPRO
+Documents,DQ_03,1538,Invalid company_id: WIPRO
+Documents,DQ_03,1539,Invalid company_id: WIPRO
+Documents,DQ_03,1540,Invalid company_id: WIPRO
+Documents,DQ_03,1541,Invalid company_id: WIPRO
+Documents,DQ_03,1542,Invalid company_id: WIPRO
+Documents,DQ_03,1543,Invalid company_id: WIPRO
+Documents,DQ_03,1544,Invalid company_id: WIPRO
+Documents,DQ_03,1545,Invalid company_id: WIPRO
+Documents,DQ_03,1546,Invalid company_id: WIPRO
+Documents,DQ_03,1547,Invalid company_id: WIPRO
+Documents,DQ_03,1548,Invalid company_id: WIPRO
+Documents,DQ_03,1549,Invalid company_id: WIPRO
+Documents,DQ_03,1550,Invalid company_id: WIPRO
+Documents,DQ_03,1551,Invalid company_id: WIPRO
+Documents,DQ_03,1552,Invalid company_id: WIPRO
+Documents,DQ_03,1553,Invalid company_id: ZOMATO
+Documents,DQ_03,1554,Invalid company_id: ZOMATO
+Documents,DQ_03,1555,Invalid company_id: ZOMATO
+Documents,DQ_03,1556,Invalid company_id: ZOMATO
+Documents,DQ_03,1557,Invalid company_id: ZOMATO
+Documents,DQ_03,1558,Invalid company_id: ZOMATO
+Documents,DQ_03,1559,Invalid company_id: ZOMATO
+Documents,DQ_03,1560,Invalid company_id: ZOMATO
+Documents,DQ_03,1561,Invalid company_id: ZOMATO
+Documents,DQ_03,1562,Invalid company_id: ZOMATO
+Documents,DQ_03,1563,Invalid company_id: ZOMATO
+Documents,DQ_03,1564,Invalid company_id: ZOMATO
+Documents,DQ_03,1565,Invalid company_id: ZOMATO
+Documents,DQ_03,1566,Invalid company_id: ZOMATO
+Documents,DQ_03,1567,Invalid company_id: ZOMATO
+Documents,DQ_03,1568,Invalid company_id: ZOMATO
+Documents,DQ_03,1569,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1570,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1571,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1572,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1573,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1574,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1575,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1576,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1577,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1578,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1579,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1580,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1581,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1582,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1583,Invalid company_id: ZYDUSLIFE
+Documents,DQ_03,1584,Invalid company_id: ZYDUSLIFE
+Financial Ratios,DQ_03,1148,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1149,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1150,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1151,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1152,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1153,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1154,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1155,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1156,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1157,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1158,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1159,Invalid company_id: ULTRACEMCO
+Financial Ratios,DQ_03,1160,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1161,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1162,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1163,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1164,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1165,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1166,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1167,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1168,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1169,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1170,Invalid company_id: UNIONBANK
+Financial Ratios,DQ_03,1171,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1164,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1165,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1166,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1167,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1168,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1169,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1170,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1171,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1172,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1173,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1174,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1175,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1176,Invalid company_id: ULTRACEMCO
+Profit & Loss,DQ_03,1177,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1178,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1179,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1180,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1181,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1182,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1183,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1184,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1185,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1186,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1187,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1188,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1189,Invalid company_id: UNIONBANK
+Profit & Loss,DQ_03,1190,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1191,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1192,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1193,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1194,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1195,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1196,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1197,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1198,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1199,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1200,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1201,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1202,Invalid company_id: UNITDSPR
+Profit & Loss,DQ_03,1203,Invalid company_id: VBL
+Profit & Loss,DQ_03,1204,Invalid company_id: VBL
+Profit & Loss,DQ_03,1205,Invalid company_id: VBL
+Profit & Loss,DQ_03,1206,Invalid company_id: VBL
+Profit & Loss,DQ_03,1207,Invalid company_id: VBL
+Profit & Loss,DQ_03,1208,Invalid company_id: VBL
+Profit & Loss,DQ_03,1209,Invalid company_id: VBL
+Profit & Loss,DQ_03,1210,Invalid company_id: VBL
+Profit & Loss,DQ_03,1211,Invalid company_id: VBL
+Profit & Loss,DQ_03,1212,Invalid company_id: VBL
+Profit & Loss,DQ_03,1213,Invalid company_id: VBL
+Profit & Loss,DQ_03,1214,Invalid company_id: VBL
+Profit & Loss,DQ_03,1215,Invalid company_id: VBL
+Profit & Loss,DQ_03,1216,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1217,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1218,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1219,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1220,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1221,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1222,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1223,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1224,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1225,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1226,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1227,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1228,Invalid company_id: VEDL
+Profit & Loss,DQ_03,1229,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1230,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1231,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1232,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1233,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1234,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1235,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1236,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1237,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1238,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1239,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1240,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1241,Invalid company_id: WIPRO
+Profit & Loss,DQ_03,1242,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1243,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1244,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1245,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1246,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1247,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1248,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1249,Invalid company_id: ZOMATO
+Profit & Loss,DQ_03,1250,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1251,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1252,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1253,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1254,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1255,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1256,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1257,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1258,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1259,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1260,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1261,Invalid company_id: ZYDUSLIFE
+Profit & Loss,DQ_03,1262,Invalid company_id: ZYDUSLIFE
+Pros & Cons,DQ_03,11,Invalid company_id: WIPRO
+Pros & Cons,DQ_03,12,Invalid company_id: WIPRO
+Analysis,DQ_03,8,Invalid company_id: WIPRO
+Analysis,DQ_03,9,Invalid company_id: WIPRO
+Analysis,DQ_03,10,Invalid company_id: WIPRO
+Analysis,DQ_03,12,Invalid company_id: WIPRO
+Financial Ratios,DQ_08,33,OPM mismatch
+Financial Ratios,DQ_08,185,OPM mismatch
+Financial Ratios,DQ_08,186,OPM mismatch
+Financial Ratios,DQ_08,187,OPM mismatch
+Financial Ratios,DQ_08,188,OPM mismatch
+Financial Ratios,DQ_08,189,OPM mismatch
+Financial Ratios,DQ_08,190,OPM mismatch
+Financial Ratios,DQ_08,191,OPM mismatch
+Financial Ratios,DQ_08,192,OPM mismatch
+Financial Ratios,DQ_08,193,OPM mismatch
+Financial Ratios,DQ_08,194,OPM mismatch
+Financial Ratios,DQ_08,195,OPM mismatch
+Financial Ratios,DQ_08,196,OPM mismatch
+Financial Ratios,DQ_08,221,OPM mismatch
+Financial Ratios,DQ_08,222,OPM mismatch
+Financial Ratios,DQ_08,223,OPM mismatch
+Financial Ratios,DQ_08,224,OPM mismatch
+Financial Ratios,DQ_08,225,OPM mismatch
+Financial Ratios,DQ_08,226,OPM mismatch
+Financial Ratios,DQ_08,227,OPM mismatch
+Financial Ratios,DQ_08,228,OPM mismatch
+Financial Ratios,DQ_08,229,OPM mismatch
+Financial Ratios,DQ_08,230,OPM mismatch
+Financial Ratios,DQ_08,231,OPM mismatch
+Financial Ratios,DQ_08,232,OPM mismatch
+Financial Ratios,DQ_08,233,OPM mismatch
+Financial Ratios,DQ_08,234,OPM mismatch
+Financial Ratios,DQ_08,235,OPM mismatch
+Financial Ratios,DQ_08,236,OPM mismatch
+Financial Ratios,DQ_08,237,OPM mismatch
+Financial Ratios,DQ_08,238,OPM mismatch
+Financial Ratios,DQ_08,239,OPM mismatch
+Financial Ratios,DQ_08,240,OPM mismatch
+Financial Ratios,DQ_08,241,OPM mismatch
+Financial Ratios,DQ_08,242,OPM mismatch
+Financial Ratios,DQ_08,315,OPM mismatch
+Financial Ratios,DQ_08,316,OPM mismatch
+Financial Ratios,DQ_08,317,OPM mismatch
+Financial Ratios,DQ_08,318,OPM mismatch
+Financial Ratios,DQ_08,319,OPM mismatch
+Financial Ratios,DQ_08,320,OPM mismatch
+Financial Ratios,DQ_08,321,OPM mismatch
+Financial Ratios,DQ_08,322,OPM mismatch
+Financial Ratios,DQ_08,323,OPM mismatch
+Financial Ratios,DQ_08,324,OPM mismatch
+Financial Ratios,DQ_08,325,OPM mismatch
+Financial Ratios,DQ_08,326,OPM mismatch
+Financial Ratios,DQ_08,327,OPM mismatch
+Financial Ratios,DQ_08,328,OPM mismatch
+Financial Ratios,DQ_08,329,OPM mismatch
+Financial Ratios,DQ_08,330,OPM mismatch
+Financial Ratios,DQ_08,331,OPM mismatch
+Financial Ratios,DQ_08,332,OPM mismatch
+Financial Ratios,DQ_08,333,OPM mismatch
+Financial Ratios,DQ_08,334,OPM mismatch
+Financial Ratios,DQ_08,335,OPM mismatch
+Financial Ratios,DQ_08,336,OPM mismatch
+Financial Ratios,DQ_08,337,OPM mismatch
+Financial Ratios,DQ_08,338,OPM mismatch
+Financial Ratios,DQ_08,339,OPM mismatch
+Financial Ratios,DQ_08,340,OPM mismatch
+Financial Ratios,DQ_08,341,OPM mismatch
+Financial Ratios,DQ_08,342,OPM mismatch
+Financial Ratios,DQ_08,343,OPM mismatch
+Financial Ratios,DQ_08,344,OPM mismatch
+Financial Ratios,DQ_08,345,OPM mismatch
+Financial Ratios,DQ_08,346,OPM mismatch
+Financial Ratios,DQ_08,347,OPM mismatch
+Financial Ratios,DQ_08,348,OPM mismatch
+Financial Ratios,DQ_08,349,OPM mismatch
+Financial Ratios,DQ_08,350,OPM mismatch
+Financial Ratios,DQ_08,351,OPM mismatch
+Financial Ratios,DQ_08,352,OPM mismatch
+Financial Ratios,DQ_08,353,OPM mismatch
+Financial Ratios,DQ_08,354,OPM mismatch
+Financial Ratios,DQ_08,355,OPM mismatch
+Financial Ratios,DQ_08,356,OPM mismatch
+Financial Ratios,DQ_08,357,OPM mismatch
+Financial Ratios,DQ_08,358,OPM mismatch
+Financial Ratios,DQ_08,359,OPM mismatch
+Financial Ratios,DQ_08,360,OPM mismatch
+Financial Ratios,DQ_08,361,OPM mismatch
+Financial Ratios,DQ_08,362,OPM mismatch
+Financial Ratios,DQ_08,502,OPM mismatch
+Financial Ratios,DQ_08,503,OPM mismatch
+Financial Ratios,DQ_08,504,OPM mismatch
+Financial Ratios,DQ_08,505,OPM mismatch
+Financial Ratios,DQ_08,506,OPM mismatch
+Financial Ratios,DQ_08,507,OPM mismatch
+Financial Ratios,DQ_08,508,OPM mismatch
+Financial Ratios,DQ_08,509,OPM mismatch
+Financial Ratios,DQ_08,510,OPM mismatch
+Financial Ratios,DQ_08,511,OPM mismatch
+Financial Ratios,DQ_08,512,OPM mismatch
+Financial Ratios,DQ_08,513,OPM mismatch
+Financial Ratios,DQ_08,514,OPM mismatch
+Financial Ratios,DQ_08,515,OPM mismatch
+Financial Ratios,DQ_08,516,OPM mismatch
+Financial Ratios,DQ_08,517,OPM mismatch
+Financial Ratios,DQ_08,518,OPM mismatch
+Financial Ratios,DQ_08,519,OPM mismatch
+Financial Ratios,DQ_08,520,OPM mismatch
+Financial Ratios,DQ_08,521,OPM mismatch
+Financial Ratios,DQ_08,522,OPM mismatch
+Financial Ratios,DQ_08,523,OPM mismatch
+Financial Ratios,DQ_08,524,OPM mismatch
+Financial Ratios,DQ_08,525,OPM mismatch
+Financial Ratios,DQ_08,526,OPM mismatch
+Financial Ratios,DQ_08,527,OPM mismatch
+Financial Ratios,DQ_08,528,OPM mismatch
+Financial Ratios,DQ_08,529,OPM mismatch
+Financial Ratios,DQ_08,530,OPM mismatch
+Financial Ratios,DQ_08,531,OPM mismatch
+Financial Ratios,DQ_08,532,OPM mismatch
+Financial Ratios,DQ_08,533,OPM mismatch
+Financial Ratios,DQ_08,534,OPM mismatch
+Financial Ratios,DQ_08,535,OPM mismatch
+Financial Ratios,DQ_08,536,OPM mismatch
+Financial Ratios,DQ_08,537,OPM mismatch
+Financial Ratios,DQ_08,538,OPM mismatch
+Financial Ratios,DQ_08,539,OPM mismatch
+Financial Ratios,DQ_08,540,OPM mismatch
+Financial Ratios,DQ_08,541,OPM mismatch
+Financial Ratios,DQ_08,542,OPM mismatch
+Financial Ratios,DQ_08,543,OPM mismatch
+Financial Ratios,DQ_08,544,OPM mismatch
+Financial Ratios,DQ_08,545,OPM mismatch
+Financial Ratios,DQ_08,546,OPM mismatch
+Financial Ratios,DQ_08,547,OPM mismatch
+Financial Ratios,DQ_08,548,OPM mismatch
+Financial Ratios,DQ_08,549,OPM mismatch
+Financial Ratios,DQ_08,550,OPM mismatch
+Financial Ratios,DQ_08,551,OPM mismatch
+Financial Ratios,DQ_08,552,OPM mismatch
+Financial Ratios,DQ_08,553,OPM mismatch
+Financial Ratios,DQ_08,554,OPM mismatch
+Financial Ratios,DQ_08,555,OPM mismatch
+Financial Ratios,DQ_08,556,OPM mismatch
+Financial Ratios,DQ_08,557,OPM mismatch
+Financial Ratios,DQ_08,558,OPM mismatch
+Financial Ratios,DQ_08,559,OPM mismatch
+Financial Ratios,DQ_08,560,OPM mismatch
+Financial Ratios,DQ_08,561,OPM mismatch
+Financial Ratios,DQ_08,562,OPM mismatch
+Financial Ratios,DQ_08,563,OPM mismatch
+Financial Ratios,DQ_08,564,OPM mismatch
+Financial Ratios,DQ_08,565,OPM mismatch
+Financial Ratios,DQ_08,566,OPM mismatch
+Financial Ratios,DQ_08,567,OPM mismatch
+Financial Ratios,DQ_08,568,OPM mismatch
+Financial Ratios,DQ_08,569,OPM mismatch
+Financial Ratios,DQ_08,570,OPM mismatch
+Financial Ratios,DQ_08,571,OPM mismatch
+Financial Ratios,DQ_08,572,OPM mismatch
+Financial Ratios,DQ_08,573,OPM mismatch
+Financial Ratios,DQ_08,574,OPM mismatch
+Financial Ratios,DQ_08,575,OPM mismatch
+Financial Ratios,DQ_08,576,OPM mismatch
+Financial Ratios,DQ_08,577,OPM mismatch
+Financial Ratios,DQ_08,578,OPM mismatch
+Financial Ratios,DQ_08,579,OPM mismatch
+Financial Ratios,DQ_08,580,OPM mismatch
+Financial Ratios,DQ_08,581,OPM mismatch
+Financial Ratios,DQ_08,582,OPM mismatch
+Financial Ratios,DQ_08,583,OPM mismatch
+Financial Ratios,DQ_08,584,OPM mismatch
+Financial Ratios,DQ_08,585,OPM mismatch
+Financial Ratios,DQ_08,586,OPM mismatch
+Financial Ratios,DQ_08,587,OPM mismatch
+Financial Ratios,DQ_08,588,OPM mismatch
+Financial Ratios,DQ_08,589,OPM mismatch
+Financial Ratios,DQ_08,590,OPM mismatch
+Financial Ratios,DQ_08,591,OPM mismatch
+Financial Ratios,DQ_08,592,OPM mismatch
+Financial Ratios,DQ_08,593,OPM mismatch
+Financial Ratios,DQ_08,594,OPM mismatch
+Financial Ratios,DQ_08,595,OPM mismatch
+Financial Ratios,DQ_08,596,OPM mismatch
+Financial Ratios,DQ_08,597,OPM mismatch
+Financial Ratios,DQ_08,598,OPM mismatch
+Financial Ratios,DQ_08,599,OPM mismatch
+Financial Ratios,DQ_08,600,OPM mismatch
+Financial Ratios,DQ_08,601,OPM mismatch
+Financial Ratios,DQ_08,602,OPM mismatch
+Financial Ratios,DQ_08,603,OPM mismatch
+Financial Ratios,DQ_08,604,OPM mismatch
+Financial Ratios,DQ_08,605,OPM mismatch
+Financial Ratios,DQ_08,606,OPM mismatch
+Financial Ratios,DQ_08,607,OPM mismatch
+Financial Ratios,DQ_08,608,OPM mismatch
+Financial Ratios,DQ_08,676,OPM mismatch
+Financial Ratios,DQ_08,702,OPM mismatch
+Financial Ratios,DQ_08,703,OPM mismatch
+Financial Ratios,DQ_08,704,OPM mismatch
+Financial Ratios,DQ_08,705,OPM mismatch
+Financial Ratios,DQ_08,706,OPM mismatch
+Financial Ratios,DQ_08,707,OPM mismatch
+Financial Ratios,DQ_08,708,OPM mismatch
+Financial Ratios,DQ_08,709,OPM mismatch
+Financial Ratios,DQ_08,710,OPM mismatch
+Financial Ratios,DQ_08,711,OPM mismatch
+Financial Ratios,DQ_08,712,OPM mismatch
+Financial Ratios,DQ_08,713,OPM mismatch
+Financial Ratios,DQ_08,1039,OPM mismatch
+Financial Ratios,DQ_08,1196,OPM mismatch
+Financial Ratios,DQ_08,1197,OPM mismatch
+Financial Ratios,DQ_08,1198,OPM mismatch
+Financial Ratios,DQ_08,1199,OPM mismatch
+Financial Ratios,DQ_08,1200,OPM mismatch
+Financial Ratios,DQ_08,1201,OPM mismatch
+Financial Ratios,DQ_08,1202,OPM mismatch
+Financial Ratios,DQ_08,1203,OPM mismatch
+Financial Ratios,DQ_08,1204,OPM mismatch
+Financial Ratios,DQ_08,1205,OPM mismatch
+Financial Ratios,DQ_08,1206,OPM mismatch
+Financial Ratios,DQ_08,1207,OPM mismatch
+Profit & Loss,DQ_09,13,Invalid sales value: 0
+Profit & Loss,DQ_12,687,Missing EPS
+Profit & Loss,DQ_12,729,Missing EPS
+Profit & Loss,DQ_12,730,Missing EPS
+Profit & Loss,DQ_12,735,Missing EPS
+Profit & Loss,DQ_12,1009,Missing EPS
+Profit & Loss,DQ_14,60,Duplicate company-year
+Profit & Loss,DQ_14,61,Duplicate company-year
+Profit & Loss,DQ_14,62,Duplicate company-year
+Profit & Loss,DQ_14,63,Duplicate company-year
+Profit & Loss,DQ_14,64,Duplicate company-year
+Profit & Loss,DQ_14,65,Duplicate company-year
+Profit & Loss,DQ_14,66,Duplicate company-year
+Profit & Loss,DQ_14,67,Duplicate company-year
+Profit & Loss,DQ_14,68,Duplicate company-year
+Profit & Loss,DQ_14,69,Duplicate company-year
+Profit & Loss,DQ_14,70,Duplicate company-year
+Profit & Loss,DQ_14,71,Duplicate company-year
+Profit & Loss,DQ_14,72,Duplicate company-year
+Profit & Loss,DQ_15,216,Negative dividend payout
+Profit & Loss,DQ_15,238,Negative dividend payout
+Profit & Loss,DQ_15,372,Negative dividend payout
+Profit & Loss,DQ_15,536,Negative dividend payout
+Profit & Loss,DQ_15,631,Negative dividend payout
+Profit & Loss,DQ_15,706,Negative dividend payout
+Profit & Loss,DQ_15,818,Negative dividend payout
+Profit & Loss,DQ_15,821,Negative dividend payout
+Profit & Loss,DQ_15,824,Negative dividend payout
+Profit & Loss,DQ_15,908,Negative dividend payout
+Profit & Loss,DQ_15,1037,Negative dividend payout
+Profit & Loss,DQ_15,1060,Negative dividend payout
+Profit & Loss,DQ_15,1061,Negative dividend payout
+Profit & Loss,DQ_15,1073,Negative dividend payout
+Profit & Loss,DQ_15,1075,Negative dividend payout
+Profit & Loss,DQ_15,1076,Negative dividend payout
+Profit & Loss,DQ_15,1077,Negative dividend payout
+Profit & Loss,DQ_15,1084,Negative dividend payout
+Profit & Loss,DQ_15,1138,Negative dividend payout
+Profit & Loss,DQ_15,1139,Negative dividend payout
+Profit & Loss,DQ_15,1146,Negative dividend payout
+Profit & Loss,DQ_15,1190,Negative dividend payout
+Profit & Loss,DQ_15,1218,Negative dividend payout
+Profit & Loss,DQ_15,1219,Negative dividend payout
+Profit & Loss,DQ_15,1223,Negative dividend payout

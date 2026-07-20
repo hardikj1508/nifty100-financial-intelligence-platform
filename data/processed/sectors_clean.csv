@@ -1,0 +1,93 @@
+id,company_id,broad_sector,sub_sector,index_weight_pct,market_cap_category
+1,ABB,Industrials,Capital Goods,0.81,Large Cap
+2,ADANIENSOL,Energy,Power & Utilities,0.65,Large Cap
+3,ADANIENT,Industrials,Conglomerates,1.5,Large Cap
+4,ADANIGREEN,Energy,Renewable Energy,1.23,Large Cap
+5,ADANIPORTS,Industrials,Infrastructure,2.12,Large Cap
+6,ADANIPOWER,Energy,Power & Utilities,3.01,Large Cap
+7,AMBUJACEM,Materials,Cement,2.82,Large Cap
+8,APOLLOHOSP,Healthcare,Healthcare,0.62,Large Cap
+9,ASIANPAINT,Materials,Paints & Coatings,1.13,Large Cap
+10,ATGL,Energy,Gas Distribution,0.6,Large Cap
+11,AXISBANK,Financials,Private Banks,2.97,Large Cap
+12,BAJAJ-AUTO,Consumer Discretionary,Two Wheelers,3.9,Large Cap
+13,BAJAJFINSV,Financials,Diversified Financials,2.12,Large Cap
+14,BAJAJHLDNG,Financials,Holding Companies,3.36,Large Cap
+15,BAJFINANCE,Financials,Consumer Finance,1.78,Large Cap
+16,BANKBARODA,Financials,Public Sector Banks,1.27,Large Cap
+17,BEL,Industrials,Defence Electronics,3.65,Large Cap
+18,BHARTIARTL,Communication Services,Telecommunications,1.13,Large Cap
+19,BHEL,Industrials,Capital Goods,1.24,Large Cap
+20,BOSCHLTD,Consumer Discretionary,Auto Ancillaries,2.82,Large Cap
+21,BPCL,Energy,Oil & Gas Refining,2.57,Large Cap
+22,BRITANNIA,Consumer Staples,Food Products,0.66,Large Cap
+23,CANBK,Financials,Public Sector Banks,2.96,Large Cap
+24,CHOLAFIN,Financials,Consumer Finance,3.94,Large Cap
+25,CIPLA,Healthcare,Pharmaceuticals,0.95,Large Cap
+26,COALINDIA,Materials,Mining & Metals,2.46,Large Cap
+27,DABUR,Consumer Staples,Personal Products,2.4,Large Cap
+28,DIVISLAB,Healthcare,Pharmaceuticals,3.75,Large Cap
+29,DLF,Real Estate,Real Estate,2.86,Large Cap
+30,DMART,Consumer Discretionary,Retail,3.07,Large Cap
+31,DRREDDY,Healthcare,Pharmaceuticals,1.01,Mid Cap
+32,EICHERMOT,Consumer Discretionary,Two Wheelers,3.13,Large Cap
+33,GAIL,Energy,Gas Distribution,3.12,Large Cap
+34,GODREJCP,Consumer Staples,Personal Products,0.89,Large Cap
+35,GRASIM,Industrials,Diversified Industrials,2.61,Mid Cap
+36,HAL,Industrials,Defence & Aerospace,1.6,Large Cap
+37,HAVELLS,Industrials,Consumer Electricals,1.44,Large Cap
+38,HCLTECH,Information Technology,IT Services,2.5,Large Cap
+39,HDFCBANK,Financials,Private Banks,1.06,Large Cap
+40,HDFCLIFE,Financials,Life Insurance,0.93,Large Cap
+41,HEROMOTOCO,Consumer Discretionary,Two Wheelers,0.26,Large Cap
+42,HINDALCO,Materials,Metals & Mining,0.64,Large Cap
+43,HINDUNILVR,Consumer Staples,FMCG,1.11,Mid Cap
+44,ICICIBANK,Financials,Private Banks,3.87,Large Cap
+45,ICICIGI,Financials,General Insurance,3.51,Large Cap
+46,ICICIPRULI,Financials,Life Insurance,2.47,Large Cap
+47,INDIGO,Consumer Discretionary,Airlines,3.03,Large Cap
+48,INDUSINDBK,Financials,Private Banks,2.54,Large Cap
+49,INFY,Information Technology,IT Services,3.37,Large Cap
+50,IOC,Energy,Oil & Gas Refining,0.27,Mid Cap
+51,IRCTC,Consumer Discretionary,Travel & Tourism,3.97,Mid Cap
+52,IRFC,Financials,Speciality Finance,4.33,Large Cap
+53,ITC,Consumer Staples,Diversified FMCG,1.39,Large Cap
+54,JINDALSTEL,Materials,Steel,1.41,Large Cap
+55,JIOFIN,Financials,Diversified Financials,0.38,Mid Cap
+56,JSWENERGY,Energy,Power & Utilities,1.14,Mid Cap
+57,JSWSTEEL,Materials,Steel,4.49,Large Cap
+58,KOTAKBANK,Financials,Private Banks,3.47,Large Cap
+59,LICI,Financials,Life Insurance,2.18,Large Cap
+60,LODHA,Real Estate,Real Estate,1.59,Large Cap
+61,LT,Industrials,Engineering & Construction,3.03,Large Cap
+62,LTIM,Information Technology,IT Services,2.64,Large Cap
+63,M&M,Consumer Discretionary,Automobiles,3.95,Large Cap
+64,MARUTI,Consumer Discretionary,Automobiles,1.36,Mid Cap
+65,MOTHERSON,Consumer Discretionary,Auto Ancillaries,3.39,Large Cap
+66,NAUKRI,Communication Services,Internet & Platforms,4.44,Large Cap
+67,NESTLEIND,Consumer Staples,Food Products,0.94,Large Cap
+68,NHPC,Energy,Power & Utilities,0.33,Large Cap
+69,NTPC,Energy,Power & Utilities,4.04,Large Cap
+70,ONGC,Energy,Oil & Gas Exploration,4.49,Large Cap
+71,PFC,Financials,Speciality Finance,2.15,Large Cap
+72,PIDILITIND,Materials,Specialty Chemicals,2.15,Large Cap
+73,PNB,Financials,Public Sector Banks,3.82,Large Cap
+74,POWERGRID,Energy,Power Transmission,4.12,Large Cap
+75,RECLTD,Financials,Speciality Finance,1.78,Large Cap
+76,RELIANCE,Energy,Conglomerates,4.24,Large Cap
+77,SBILIFE,Financials,Life Insurance,3.16,Large Cap
+78,SBIN,Financials,Public Sector Banks,3.6,Large Cap
+79,SHREECEM,Materials,Cement,2.86,Large Cap
+80,SHRIRAMFIN,Financials,Consumer Finance,1.15,Large Cap
+81,SIEMENS,Industrials,Capital Goods,0.99,Large Cap
+82,SUNPHARMA,Healthcare,Pharmaceuticals,0.3,Large Cap
+83,TATACONSUM,Consumer Staples,Food & Beverages,0.33,Large Cap
+84,TATAMOTORS,Consumer Discretionary,Automobiles,0.91,Large Cap
+85,TATAPOWER,Energy,Power & Utilities,4.19,Mid Cap
+86,TATASTEEL,Materials,Steel,1.01,Mid Cap
+87,TCS,Information Technology,IT Services,1.1,Large Cap
+88,TECHM,Information Technology,IT Services,2.39,Large Cap
+89,TITAN,Consumer Discretionary,Gems & Jewellery,2.38,Large Cap
+90,TORNTPHARM,Healthcare,Pharmaceuticals,0.24,Large Cap
+91,TRENT,Consumer Discretionary,Retail,0.73,Large Cap
+92,TVSMOTOR,Consumer Discretionary,Two Wheelers,2.16,Large Cap
