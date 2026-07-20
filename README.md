@@ -42,8 +42,6 @@ This project was developed as part of an internship to demonstrate skills in dat
 
 ## 📂 Project Structure
 
-## 📂 Project Structure
-
 ```text
 Nifty100-Financial-Intelligence-Platform/
 │
