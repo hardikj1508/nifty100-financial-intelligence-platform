@@ -156,6 +156,8 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 OUTPUT_FILE = OUTPUT_DIR / "cashflow_intelligence.xlsx"
 DISTRESS_FILE = OUTPUT_DIR / "distress_alerts.csv"
+PATTERN_SUMMARY = OUTPUT_DIR / "capital_allocation_summary.csv"
+PATTERN_CHANGES = OUTPUT_DIR / "pattern_changes.csv"
 
 def load_data():
 
@@ -280,12 +282,6 @@ def generate():
             row["financing_activity"] > 0
         )
 
-        print(
-            company,
-            row["operating_activity"],
-            row["financing_activity"]
-        )
-
         if distress:
 
             distress_rows.append({
@@ -350,25 +346,97 @@ def generate():
 
         })
 
-    intelligence = pd.DataFrame(results)
+        intelligence = pd.DataFrame(results)
 
-    distress = pd.DataFrame(distress_rows)
+        distress = pd.DataFrame(distress_rows)
 
-    intelligence.to_excel(OUTPUT_FILE, index=False)
+        # =====================================================
+        # Capital Allocation Summary
+        # =====================================================
 
-    distress.to_csv(DISTRESS_FILE, index=False)
+        distribution = (
+            intelligence["capital_allocation_label"]
+            .value_counts()
+            .reset_index()
+        )
 
-    print("=" * 60)
-    print("Cash Flow Intelligence Generated")
-    print("=" * 60)
+        distribution.columns = [
+            "capital_allocation_pattern",
+            "company_count"
+        ]
 
-    print("Companies :", len(intelligence))
+        distribution.to_csv(
+            PATTERN_SUMMARY,
+            index=False
+        )
 
-    print("Distress Alerts :", len(distress))
+        # =====================================================
+        # Pattern Changes
+        # =====================================================
 
-    print(f"\nSaved -> {OUTPUT_FILE}")
+        changes = []
 
-    print(f"Saved -> {DISTRESS_FILE}")
+        for company, group in df.groupby("company_id"):
+
+            group = group.sort_values("year")
+
+            previous_pattern = None
+
+            for _, row in group.iterrows():
+
+                current_pattern = capital_allocation_pattern(
+                    row["operating_activity"],
+                    row["investing_activity"],
+                    row["financing_activity"]
+                )
+
+                if (
+                    previous_pattern is not None
+                    and previous_pattern != current_pattern
+                ):
+
+                    changes.append({
+                        "company_id": company,
+                        "year": row["year"],
+                        "from_pattern": previous_pattern,
+                        "to_pattern": current_pattern
+                    })
+
+                previous_pattern = current_pattern
+
+        changes_df = pd.DataFrame(changes)
+
+        changes_df.to_csv(
+            PATTERN_CHANGES,
+            index=False
+        )
+
+        # =====================================================
+        # Save Files
+        # =====================================================
+
+        intelligence.to_excel(
+            OUTPUT_FILE,
+            index=False
+        )
+
+        distress.to_csv(
+            DISTRESS_FILE,
+            index=False
+        )
+
+        print("=" * 60)
+        print("Cash Flow Intelligence Generated")
+        print("=" * 60)
+
+        print("Companies :", len(intelligence))
+        print("Distress Alerts :", len(distress))
+        print("Pattern Changes :", len(changes_df))
+
+        print(f"\nSaved -> {OUTPUT_FILE}")
+        print(f"Saved -> {DISTRESS_FILE}")
+        print(f"Saved -> {PATTERN_SUMMARY}")
+        print(f"Saved -> {PATTERN_CHANGES}")
 
 if __name__ == "__main__":
     generate()
