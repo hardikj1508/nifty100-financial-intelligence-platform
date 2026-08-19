@@ -1610,6 +1610,222 @@ def create_pros_cons_section(data):
         investment_view,
     ]
 
+def create_peer_comparision_section(data):
+    """
+    Create a peer comparision table for the latest available year.
+    """
+
+    peer_file = PROJECT_ROOT / "reports" / "peer_comparison.xlsx"
+
+    df = pd.read_excel(
+        peer_file,
+        sheet_name="IT Services"
+    )
+
+    #Keep latest year
+
+    latest_year = df["year"].max()
+
+    peers = df[df["year"] == latest_year].copy()
+
+    #Selected relevant columns
+
+    columns = [
+        "company_name",
+        "net_profit_margin_pct",
+        "operating_profit_margin_pct",
+        "return_on_equity_pct",
+        "debt_to_equity",
+        "free_cash_flow_cr"
+    ]
+
+    peers = peers[columns]
+
+    #sort with Tcs first
+    peers["is_tcs"] = peers["company_name"].eq(
+        "Tata Consultancy Services Ltd"
+    )
+
+    peers = peers.sort_values(
+        ["is_tcs", "return_on_equity_pct"],
+        ascending=[False, False]
+    )
+
+    peers = peers.drop(columns=["is_tcs"])
+
+    #Heading
+
+    elements = [
+        Paragraph(
+            "Peer Comparision",
+            section_style
+        ),
+        Spacer(1, 12)
+    ]
+
+    #Table header
+    table_data = [[
+        "Company",
+        "Net Margin",
+        "Operating Margin",
+        "ROE",
+        "Debt / Equity",
+        "Free Cash Flow"
+    ]]
+
+    for _, row in peers.iterrows():
+
+        table_data.append([
+            str(row["company_name"]),
+            f'{row["net_profit_margin_pct"]:.2f}%',
+            f'{row["operating_profit_margin_pct"]:.2f}%',
+            f'{row["return_on_equity_pct"]:.2f}%',
+            f'{row["debt_to_equity"]:.2f}x',
+            f'{row["free_cash_flow_cr"]:,.0f}'
+        ])
+
+    table = Table(
+        table_data,
+        colWidths=[155, 60, 85, 55, 70, 80],
+        repeatRows=1
+    )
+
+    table.setStyle(
+        TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), NAVY),
+            ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+            ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
+            ("FONTSIZE", (0, 0), (-1, 0), 7) ,
+            ("ALIGN", (1, 1), (-1, -1), "CENTER"),
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ("GRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#CBD5E1") ),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, colors.HexColor("#F7F9FC")]),
+            ("LEFTPADDING", (0, 0), (-1, -1), 5),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 5),
+            ("TOPPADDING", (0, 0), (-1, -1), 6),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+
+            #Highlight TCS
+            ("BACKGROUND", (0, 1), (-1, 1), colors.HexColor("#E8F5E9")),
+            ("FONTNAME", (0, 1), (-1, 1), "Helvetica-Bold"),
+        ])
+    )
+
+    elements.append(table)
+
+    elements.append(Spacer(1, 12))
+
+    #TCS peer positioning
+
+    tcs_name = "Tata Consultancy Services Ltd"
+
+    tcs = peers[
+        peers["company_name"] == tcs_name
+    ].iloc[0]
+
+    #peer averages
+
+    peer_avg_margin = peers["net_profit_margin_pct"].mean()
+    peer_avg_op_margin = peers["operating_profit_margin_pct"].mean()
+    peer_avg_roe = peers["return_on_equity_pct"].mean()
+
+    #Dtermine rankings
+    roe_rank = (
+        peers["return_on_equity_pct"]
+        .rank(ascending=False, method="min")
+        .loc[tcs.name]
+    )
+
+    margin_rank = (
+        peers["return_on_equity_pct"]
+        .rank(ascending=False, method="min")
+        .loc[tcs.name]
+    )
+
+    op_margin_rank = (
+        peers["operating_profit_margin_pct"]
+        .rank(ascending=False, method="min")
+        .loc[tcs.name]
+    )
+
+    fcf_rank = (
+        peers["free_cash_flow_cr"]
+        .rank(ascending=False, method="min")
+        .loc[tcs.name]
+    )
+
+    positioning = [
+        f"TCS ranks #{int(margin_rank)} in Net Margin at "
+        f"{tcs['net_profit_margin_pct']:.2f}%.",
+
+        f"TCS ranks #{int(op_margin_rank)} in Operating Margin at "
+        f"{tcs['operating_profit_margin_pct']:.2f}%.",
+
+
+        f"TCS ranks #{int(roe_rank)} in ROE at "
+        f"{tcs['return_on_equity_pct']:.2f}%.",
+
+        f"TCS ranks #{int(fcf_rank)} in Free Cash Flow at "
+        f"{tcs['free_cash_flow_cr']:,.0f} Cr.",
+
+        f"TCS Net Margin is "
+        f"{tcs['net_profit_margin_pct'] - peer_avg_margin:.2f} "
+        f"percentage points above the peer average."
+    ]
+
+    insight_paragraphs = []
+
+    for insight in positioning:
+        insight_paragraphs.append(
+            Paragraph(
+                f"• {insight}",
+                ParagraphStyle(
+                    "PeerInsight",
+                    parent=styles["Normal"],
+                    fontNmae="Helvetica",
+                    fontSize=8.5,
+                    leading=14,
+                    textColor=NAVY,
+                    spaceAfter=7
+                )
+            )
+        )
+
+    insight_table = Table(
+        [[
+            Paragraph(
+                "TCS PEER POSITIONG",
+                ParagraphStyle(
+                    "PeerTitle",
+                    parent=styles["Normal"],
+                    fontName="Helvetica-Bold",
+                    fontSize=10,
+                    textColor=NAVY,
+                )
+            )
+        ],[
+            insight_paragraphs
+        ]],
+        colWidths=[570],
+        rowHeights=[25, None]
+    )
+
+    insight_table.setStyle(
+        TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#E8F5E9")),
+            ("BACKGROUND", (0, 1), (-1, 1), colors.HexColor("#F7F9FC")),
+            ("BOX", (0, 0), (-1, -1), 0.6, colors.HexColor("#CBD5E1")),
+            ("LEFTPADDING", (0, 0), (-1, -1), 10),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 10),
+            ("TOPPADDING", (0, 0), (-1, -1), 7),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 7)
+        ])
+    )
+
+    elements.append(insight_table)
+
+    return elements
+
 def build_tearsheet(company_id="TCS"):
 
     # ============================================================
@@ -1856,6 +2072,14 @@ def build_tearsheet(company_id="TCS"):
     # ============================================================
     # BUILD PDF
     # ============================================================
+    
+    #Page 3 Peer Comparision
+    story.append(PageBreak())
+
+    peer_section = create_peer_comparision_section(data)
+
+    for element in peer_section:
+        story.append(element)
 
     doc.build(story)
 
