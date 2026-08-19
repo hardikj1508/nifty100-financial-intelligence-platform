@@ -357,6 +357,9 @@ def capital_allocation_badge(data):
     if debt_equity is not None:
         total +=1
 
+        if debt_equity < 0.5:
+            score += 1
+
     #ROE
 
     if roe is not None:
@@ -373,15 +376,13 @@ def capital_allocation_badge(data):
         if 20 <= dividend_payout <= 70:
             score += 1
 
-    #Free cash flo
+    #Free cash flow
 
     if free_cash_flow is not None:
-        total+= 1
+        total += 1
 
         if free_cash_flow > 0:
             score += 1
-
-    #Overall Assessment
 
 # ---------------------------------------------------------
 # OVERALL ASSESSMENT
@@ -614,7 +615,6 @@ def capital_allocation_badge(data):
         rowHeights=[70],
     )
 
-
 def load_company_data(company_id):
 
     financial = pd.read_csv(FINANCIAL_RATIO_FILE)
@@ -716,7 +716,6 @@ def load_company_data(company_id):
 
         "cash_flow_history": cash_flow,
     }
-
 
 def create_financial_bar_chart(history, column, title):
     """
@@ -1863,5 +1862,3 @@ def build_tearsheet(company_id="TCS"):
 if __name__ == "__main__":
 
     build_tearsheet("TCS")
-
-
