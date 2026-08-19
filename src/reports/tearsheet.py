@@ -794,7 +794,7 @@ def create_roe_chart(history):
 
     history = history.copy()
 
-    history = history = history.sort_values("year").tail(10)
+    history = history.sort_values("year").tail(10)
 
     labels = history["year"].astype(str).tolist()
 
@@ -827,7 +827,7 @@ def create_roe_chart(history):
     chart.valueAxis.labels.fontName = "Helvetica"
     chart.valueAxis.labels.fontSize = 7
 
-    chart.valueAxis.valueMin = 0
+    chart.valueAxis.valueMin = -5
 
     chart.valueAxis.valueMax = max(values) + 10
 
@@ -1841,8 +1841,10 @@ def build_tearsheet(company_id="TCS"):
     # DOCUMENT
     # ============================================================
 
+    output_file = OUTPUT_DIR / f"{company_id}_tearsheet.pdf"
+
     doc = SimpleDocTemplate(
-        str(OUTPUT_FILE),
+        str(output_file),
         pagesize=A4,
         leftMargin=MARGIN_LEFT,
         rightMargin=MARGIN_RIGHT,
@@ -2025,6 +2027,8 @@ def build_tearsheet(company_id="TCS"):
         )
     )
 
+    story.append(Spacer(1, 8))
+
     cash_flow_waterfall = create_cash_flow_waterfall(
         data["cash_flow_history"]
     )
@@ -2074,12 +2078,12 @@ def build_tearsheet(company_id="TCS"):
     # ============================================================
     
     #Page 3 Peer Comparision
-    story.append(PageBreak())
+    # story.append(PageBreak())
 
-    peer_section = create_peer_comparision_section(data)
+    # peer_section = create_peer_comparision_section(data)
 
-    for element in peer_section:
-        story.append(element)
+    # for element in peer_section:
+    #     story.append(element)
 
     doc.build(story)
 
