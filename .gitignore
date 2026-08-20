@@ -132,3 +132,5 @@ output/*.xlsx
 # Python Version
 # -----------------------------------------------------
 .python-version
+# Generated PDF Output
+output/*.pdf
