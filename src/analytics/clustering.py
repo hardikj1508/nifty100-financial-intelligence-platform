@@ -1,8 +1,7 @@
 """
 Nifty100 Financial Intelligence Platform
-Sprint 6 - Day 36
-
-KMeans financial clustering for all Nifty 100 companies.
+Sprint 6 - Day 37
+KMeans financial clustering and cluster profiling.
 """
 
 from pathlib import Path
@@ -26,13 +25,14 @@ REPORTS_DIR = PROJECT_ROOT / "reports"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
-
 FINANCIAL_FILE = DATA_DIR / "financial_ratios_clean.csv"
 PANDL_FILE = DATA_DIR / "profitandloss_clean.csv"
 CASHFLOW_FILE = DATA_DIR / "cashflow_clean.csv"
 SECTOR_FILE = DATA_DIR / "sectors_clean.csv"
 
 CLUSTER_FILE = OUTPUT_DIR / "cluster_labels.csv"
+CLUSTER_PROFILE_FILE = OUTPUT_DIR / "cluster_profiles.csv"
+
 ELBOW_FILE = REPORTS_DIR / "elbow_plot.png"
 
 
@@ -58,9 +58,12 @@ RANDOM_STATE = 42
 
 def parse_year(value):
     """Convert project year labels such as 'Mar 2024' to integer year."""
+
     value = str(value)
 
-    match = pd.Series([value]).str.extract(r"(\d{4})")[0].iloc[0]
+    match = pd.Series([value]).str.extract(
+        r"(\d{4})"
+    )[0].iloc[0]
 
     if pd.isna(match):
         return None
@@ -88,7 +91,9 @@ def calculate_positive_cagr(beginning, ending, years):
     if beginning <= 0 or ending <= 0:
         return float("nan")
 
-    return ((ending / beginning) ** (1 / years) - 1) * 100
+    return (
+        (ending / beginning) ** (1 / years) - 1
+    ) * 100
 
 
 # ============================================================
@@ -103,9 +108,17 @@ def load_data():
     cashflow = pd.read_csv(CASHFLOW_FILE)
     sectors = pd.read_csv(SECTOR_FILE)
 
-    financial["parsed_year"] = financial["year"].apply(parse_year)
-    pandl["parsed_year"] = pandl["year"].apply(parse_year)
-    cashflow["parsed_year"] = cashflow["year"].apply(parse_year)
+    financial["parsed_year"] = (
+        financial["year"].apply(parse_year)
+    )
+
+    pandl["parsed_year"] = (
+        pandl["year"].apply(parse_year)
+    )
+
+    cashflow["parsed_year"] = (
+        cashflow["year"].apply(parse_year)
+    )
 
     return financial, pandl, cashflow, sectors
 
@@ -128,38 +141,53 @@ def calculate_company_cagr(df, value_column):
     for company_id, group in df.groupby("company_id"):
 
         group = (
-            group.dropna(subset=["parsed_year", value_column])
+            group
+            .dropna(
+                subset=[
+                    "parsed_year",
+                    value_column,
+                ]
+            )
             .sort_values("parsed_year")
             .drop_duplicates("parsed_year")
         )
 
         if group.empty:
+
             results.append(
                 {
                     "company_id": company_id,
                     "cagr": float("nan"),
                 }
             )
+
             continue
 
         latest = group.iloc[-1]
 
         target_year = latest["parsed_year"] - 5
 
-        candidates = group[group["parsed_year"] <= target_year]
+        candidates = group[
+            group["parsed_year"] <= target_year
+        ]
 
         if candidates.empty:
+
             results.append(
                 {
                     "company_id": company_id,
                     "cagr": float("nan"),
                 }
             )
+
             continue
 
         beginning = candidates.iloc[-1]
 
-        years = latest["parsed_year"] - beginning["parsed_year"]
+        years = (
+            latest["parsed_year"]
+            - beginning["parsed_year"]
+        )
 
         cagr = calculate_positive_cagr(
             beginning[value_column],
@@ -181,7 +209,12 @@ def calculate_company_cagr(df, value_column):
 # BUILD CLUSTERING DATASET
 # ============================================================
 
-def build_feature_dataset(financial, pandl, cashflow, sectors):
+def build_feature_dataset(
+    financial,
+    pandl,
+    cashflow,
+    sectors,
+):
     """Build one clustering feature row for every company."""
 
     # --------------------------------------------------------
@@ -215,7 +248,9 @@ def build_feature_dataset(financial, pandl, cashflow, sectors):
     )
 
     revenue_cagr = revenue_cagr.rename(
-        columns={"cagr": "revenue_cagr_5yr"}
+        columns={
+            "cagr": "revenue_cagr_5yr"
+        }
     )
 
     # --------------------------------------------------------
@@ -246,7 +281,9 @@ def build_feature_dataset(financial, pandl, cashflow, sectors):
     )
 
     fcf_cagr = fcf_cagr.rename(
-        columns={"cagr": "fcf_cagr_5yr"}
+        columns={
+            "cagr": "fcf_cagr_5yr"
+        }
     )
 
     # --------------------------------------------------------
@@ -303,9 +340,13 @@ def impute_sector_medians(df):
             .transform("median")
         )
 
-        df[feature] = df[feature].fillna(sector_medians)
+        df[feature] = df[feature].fillna(
+            sector_medians
+        )
 
-        # Fallback if an entire sector is missing the feature
+        # Fallback if an entire sector is missing
+        # the feature.
+
         df[feature] = df[feature].fillna(
             df[feature].median()
         )
@@ -321,6 +362,7 @@ def create_elbow_plot(X):
     """Generate elbow plot for k=2 through k=10."""
 
     k_values = range(2, 11)
+
     inertias = []
 
     for k in k_values:
@@ -333,7 +375,9 @@ def create_elbow_plot(X):
 
         model.fit(X)
 
-        inertias.append(model.inertia_)
+        inertias.append(
+            model.inertia_
+        )
 
     plt.figure(figsize=(8, 5))
 
@@ -347,60 +391,184 @@ def create_elbow_plot(X):
     plt.ylabel("Inertia")
     plt.title("KMeans Elbow Plot")
 
-    plt.xticks(list(k_values))
-    plt.grid(True, alpha=0.3)
+    plt.xticks(
+        list(k_values)
+    )
+
+    plt.grid(
+        True,
+        alpha=0.3,
+    )
 
     plt.tight_layout()
-    plt.savefig(ELBOW_FILE, dpi=200)
+
+    plt.savefig(
+        ELBOW_FILE,
+        dpi=200,
+    )
+
     plt.close()
 
-    print(f"Elbow plot saved -> {ELBOW_FILE}")
+    print(
+        f"Elbow plot saved -> {ELBOW_FILE}"
+    )
 
 
 # ============================================================
-# CLUSTER NAMING
+# CLUSTER NAMING + PROFILING
 # ============================================================
 
 def assign_cluster_names(df):
     """
-    Assign descriptive names based on cluster financial profiles.
-
-    Names are assigned according to relative cluster characteristics.
+    Profile each cluster and assign descriptive names
+    based on relative financial characteristics.
     """
 
-    profile = (
+    # --------------------------------------------------------
+    # Cluster mean profile
+    # --------------------------------------------------------
+
+    mean_profile = (
         df.groupby("cluster_id")[FEATURES]
         .mean()
+        .round(2)
     )
 
-    # Higher is generally better for ROE, revenue CAGR,
-    # FCF CAGR and operating margin.
-    # Lower debt-to-equity is generally better.
+    # --------------------------------------------------------
+    # Cluster median profile
+    # --------------------------------------------------------
+
+    median_profile = (
+        df.groupby("cluster_id")[FEATURES]
+        .median()
+        .round(2)
+    )
+
+    # --------------------------------------------------------
+    # Quality score
+    # --------------------------------------------------------
+
+    # Higher is generally better for:
+    # ROE
+    # Revenue CAGR
+    # FCF CAGR
+    # Operating Margin
+    #
+    # Lower Debt-to-Equity is generally better.
 
     quality_score = (
-        profile["return_on_equity_pct"].rank()
-        + profile["revenue_cagr_5yr"].rank()
-        + profile["fcf_cagr_5yr"].rank()
-        + profile["operating_profit_margin_pct"].rank()
-        - profile["debt_to_equity"].rank()
+        mean_profile[
+            "return_on_equity_pct"
+        ].rank()
+
+        +
+
+        mean_profile[
+            "revenue_cagr_5yr"
+        ].rank()
+
+        +
+
+        mean_profile[
+            "fcf_cagr_5yr"
+        ].rank()
+
+        +
+
+        mean_profile[
+            "operating_profit_margin_pct"
+        ].rank()
+
+        -
+
+        mean_profile[
+            "debt_to_equity"
+        ].rank()
     )
 
-    ranked = quality_score.sort_values(ascending=False)
+    ranked = quality_score.sort_values(
+        ascending=False
+    )
 
     names = [
         "High-Quality Compounders",
-        "Emerging Growth",
-        "Defensive Dividend Payers",
-        "Value Cyclicals",
-        "Distressed or Turnaround",
+        "Core / Moderate-Growth Companies",
+        "Low-Leverage Cash Generators",
+        "Defence Growth Leaders",
+        "Leveraged & Financial Firms",
     ]
 
     cluster_names = {}
 
-    for cluster_id, name in zip(ranked.index, names):
+    for cluster_id, name in zip(
+        ranked.index,
+        names,
+    ):
+
         cluster_names[cluster_id] = name
 
-    return cluster_names, profile
+    return (
+        cluster_names,
+        mean_profile,
+        median_profile,
+    )
+
+
+# ============================================================
+# SAVE CLUSTER PROFILES
+# ============================================================
+
+def save_cluster_profiles(
+    mean_profile,
+    median_profile,
+    cluster_names,
+):
+    """
+    Save cluster-level mean and median statistics.
+    """
+
+    profile_output = []
+
+    for cluster_id in mean_profile.index:
+
+        row = {
+            "cluster_id": cluster_id,
+            "cluster_name": cluster_names[
+                cluster_id
+            ],
+        }
+
+        for feature in FEATURES:
+
+            row[
+                f"{feature}_mean"
+            ] = mean_profile.loc[
+                cluster_id,
+                feature,
+            ]
+
+            row[
+                f"{feature}_median"
+            ] = median_profile.loc[
+                cluster_id,
+                feature,
+            ]
+
+        profile_output.append(row)
+
+    profile_df = pd.DataFrame(
+        profile_output
+    )
+
+    profile_df.to_csv(
+        CLUSTER_PROFILE_FILE,
+        index=False,
+    )
+
+    print(
+        f"Cluster profiles saved -> "
+        f"{CLUSTER_PROFILE_FILE}"
+    )
 
 
 # ============================================================
@@ -408,16 +576,27 @@ def assign_cluster_names(df):
 # ============================================================
 
 def run_clustering():
-    """Run complete Day 36 clustering pipeline."""
+    """Run complete Day 36 / Day 37 clustering pipeline."""
 
     print("=" * 70)
-    print("DAY 36 - KMEANS FINANCIAL CLUSTERING")
+    print(
+        "DAY 36 - KMEANS FINANCIAL CLUSTERING"
+    )
     print("=" * 70)
 
-    financial, pandl, cashflow, sectors = load_data()
+    financial, pandl, cashflow, sectors = (
+        load_data()
+    )
 
-    print(f"Financial ratio rows : {len(financial)}")
-    print(f"Companies in sectors : {sectors['company_id'].nunique()}")
+    print(
+        f"Financial ratio rows : "
+        f"{len(financial)}"
+    )
+
+    print(
+        f"Companies in sectors : "
+        f"{sectors['company_id'].nunique()}"
+    )
 
     # --------------------------------------------------------
     # Build features
@@ -430,7 +609,10 @@ def run_clustering():
         sectors,
     )
 
-    print(f"Companies before clustering : {df['company_id'].nunique()}")
+    print(
+        f"Companies before clustering : "
+        f"{df['company_id'].nunique()}"
+    )
 
     # --------------------------------------------------------
     # Imputation
@@ -444,7 +626,11 @@ def run_clustering():
 
     missing = df[FEATURES].isna().sum()
 
-    print("\nMissing values after sector median imputation:")
+    print(
+        "\nMissing values after "
+        "sector median imputation:"
+    )
+
     print(missing)
 
     # --------------------------------------------------------
@@ -489,12 +675,14 @@ def run_clustering():
     ]
 
     # --------------------------------------------------------
-    # Cluster names
+    # Cluster names + profiles
     # --------------------------------------------------------
 
-    cluster_names, profile = assign_cluster_names(
-        df
-    )
+    (
+        cluster_names,
+        mean_profile,
+        median_profile,
+    ) = assign_cluster_names(df)
 
     df["cluster_name"] = (
         df["cluster_id"]
@@ -502,7 +690,17 @@ def run_clustering():
     )
 
     # --------------------------------------------------------
-    # Save output
+    # Save cluster profiles
+    # --------------------------------------------------------
+
+    save_cluster_profiles(
+        mean_profile,
+        median_profile,
+        cluster_names,
+    )
+
+    # --------------------------------------------------------
+    # Save cluster labels
     # --------------------------------------------------------
 
     output = df[
@@ -513,7 +711,10 @@ def run_clustering():
             "distance_from_centroid",
         ]
     ].sort_values(
-        ["cluster_id", "company_id"]
+        [
+            "cluster_id",
+            "company_id",
+        ]
     )
 
     output.to_csv(
@@ -522,31 +723,76 @@ def run_clustering():
     )
 
     # --------------------------------------------------------
-    # Print summary
+    # Print Day 37 summary
     # --------------------------------------------------------
 
     print("\n" + "=" * 70)
-    print("CLUSTER SUMMARY")
+    print(
+        "DAY 37 - CLUSTER PROFILING"
+    )
     print("=" * 70)
+
+    print("\nCluster summary:")
 
     print(
         output.groupby(
-            ["cluster_id", "cluster_name"]
+            [
+                "cluster_id",
+                "cluster_name",
+            ]
         )
         .size()
         .to_string()
     )
 
-    print("\nCluster profiles:")
-    print(profile.round(2).to_string())
+    print(
+        "\nCluster mean profiles:"
+    )
 
-    print("\nTotal companies clustered:", len(output))
-    print("Unique companies:", output["company_id"].nunique())
+    print(
+        mean_profile
+        .round(2)
+        .to_string()
+    )
 
-    print(f"\nCluster labels saved -> {CLUSTER_FILE}")
-    print(f"Elbow plot saved -> {ELBOW_FILE}")
+    print(
+        "\nCluster median profiles:"
+    )
 
-    print("\nDAY 36 COMPLETE")
+    print(
+        median_profile
+        .round(2)
+        .to_string()
+    )
+
+    print(
+        "\nTotal companies clustered:",
+        len(output),
+    )
+
+    print(
+        "Unique companies:",
+        output["company_id"].nunique(),
+    )
+
+    print(
+        f"\nCluster labels saved -> "
+        f"{CLUSTER_FILE}"
+    )
+
+    print(
+        f"Elbow plot saved -> "
+        f"{ELBOW_FILE}"
+    )
+
+    print(
+        f"Cluster profiles saved -> "
+        f"{CLUSTER_PROFILE_FILE}"
+    )
+
+    print(
+        "\nDAY 37 - STEP 1 COMPLETE"
+    )
 
 
 # ============================================================
