@@ -15,6 +15,7 @@ from src.api.routers import (
     portfolio,
     documents,
     health,
+    market_cap,
 )
 
 
@@ -139,5 +140,10 @@ app.include_router(
 
 app.include_router(
     health.router,
+    prefix="/api/v1",
+)
+
+app.include_router(
+    market_cap.router,
     prefix="/api/v1",
 )
