@@ -21,6 +21,12 @@ def test_net_profit_margin_zero_sales():
 
     assert result is None
 
+
+def test_net_profit_margin_negative_profit():
+    result = net_profit_margin(-50, 1_000)
+
+    assert result == -5
+
 def test_operating_profit_margin():
     result = operating_profit_margin(150, 600)
 
@@ -28,6 +34,12 @@ def test_operating_profit_margin():
 
 def test_operating_profit_margin_zero_sales():
     result = operating_profit_margin(150, 0)
+
+    assert result is None
+
+
+def test_operating_profit_margin_missing_profit():
+    result = operating_profit_margin(None, 600)
 
     assert result is None
 
@@ -60,6 +72,18 @@ def test_return_on_capital_employed():
 
     assert result == 20
 
+
+def test_return_on_capital_employed_zero_capital():
+    result = return_on_capital_employed(
+        operating_profit=100,
+        other_income=20,
+        equity_capital=100,
+        reserves=-100,
+        borrowings=0,
+    )
+
+    assert result is None
+
 def test_return_on_assets():
     result = return_on_assets(
         net_profit=150,
@@ -67,6 +91,15 @@ def test_return_on_assets():
     )
 
     assert result == 20
+
+
+def test_return_on_assets_zero_assets():
+    result = return_on_assets(
+        net_profit=150,
+        total_assets=0,
+    )
+
+    assert result is None
 
 def test_debt_to_equity_ratio():
     assert debt_to_equity_ratio(500, 1000, 1000) == 0.25
