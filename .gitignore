@@ -134,3 +134,6 @@ output/*.xlsx
 .python-version
 # Generated PDF Output
 output/*.pdf
+
+# Generated test reports
+reports/
