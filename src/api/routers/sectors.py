@@ -5,7 +5,6 @@ from statistics import median
 
 from fastapi import APIRouter, HTTPException
 
-
 router = APIRouter(
     prefix="/sectors",
     tags=["Sectors"],
@@ -150,13 +149,13 @@ def get_sectors():
         # CALCULATE SECTOR MEDIANS
         # ========================================================
 
-        for sector_name, sector in sectors.items():
+        for sector_data in sectors.values():
 
             roe_values = []
             pe_values = []
             debt_values = []
 
-            for company in sector["companies"]:
+            for company in sector_data["companies"]:
 
                 ticker = company["ticker"]
 
@@ -188,13 +187,13 @@ def get_sectors():
                         pe_values.append(float(pe_ratio))
 
             if roe_values:
-                sector["median_roe"] = median(roe_values)
+                sector_data["median_roe"] = median(roe_values)
 
             if pe_values:
-                sector["median_pe"] = median(pe_values)
+                sector_data["median_pe"] = median(pe_values)
 
             if debt_values:
-                sector["median_de"] = median(debt_values)
+                sector_data["median_de"] = median(debt_values)
 
         # ========================================================
         # RESPONSE

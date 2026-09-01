@@ -1,9 +1,10 @@
 from src.analytics.cagr import (
     calculate_cagr,
-    revenue_cagr,
-    pat_cagr,
     eps_cagr,
+    pat_cagr,
+    revenue_cagr,
 )
+
 
 def test_normal_cagr():
     value, flag = calculate_cagr(100, 200, 5)

@@ -1,12 +1,11 @@
 """Company API endpoints."""
 
-from pathlib import Path
 import re
 import sqlite3
+from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Query
 from fastapi.responses import FileResponse
-
 
 # ============================================================
 # PATHS
@@ -82,13 +81,10 @@ def year_matches(
     if year is None:
         return False
 
-    if from_year is not None:
-        if year < from_year:
-            return False
+    if from_year is not None and year < from_year:
+        return False
 
-    if to_year is not None:
-        if year > to_year:
-            return False
+    return not (to_year is not None and year > to_year)
 
     return True
 
@@ -946,11 +942,8 @@ def compare_peers(ticker: str):
 
             values = []
 
-            for peer_ticker in company_metrics:
-
-                value = company_metrics[
-                    peer_ticker
-                ].get(metric)
+            for peer_ticker, peer_data in company_metrics.items():
+                value = peer_data.get(metric)
 
                 if value is not None:
                     values.append(float(value))

@@ -8,16 +8,15 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.routers import (
     companies,
-    screener,
-    sectors,
-    peers,
-    valuation,
-    portfolio,
     documents,
     health,
     market_cap,
+    peers,
+    portfolio,
+    screener,
+    sectors,
+    valuation,
 )
-
 
 # ============================================================
 # CONFIGURATION

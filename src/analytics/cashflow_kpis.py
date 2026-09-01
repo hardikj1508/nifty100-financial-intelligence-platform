@@ -22,12 +22,12 @@ def free_cash_flow(
 
     return operating_activity + investing_activity
 
-from typing import Optional
+
 
 def cfo_quality_score(
     cash_from_operations: float,
     net_profit: float
-) -> tuple[Optional[float], str]:
+) -> tuple[float | None, str]:
     """
     Calculate CFO Quality Score.
 
@@ -58,12 +58,12 @@ def cfo_quality_score(
 
     return score, label
 
-from typing import Optional
+
 
 def capex_intensity(
     investing_activity: float,
     sales: float
-) -> tuple[Optional[float], str]:
+) -> tuple[float | None, str]:
     """
     Calculate CapEx Intensity.
 
@@ -91,7 +91,7 @@ def capex_intensity(
 def fcf_conversion_rate(
     free_cash_flow: float,
     operating_profit: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate FCF Conversion Rate.
 
@@ -144,8 +144,9 @@ def capital_allocation_pattern(
 
     return "MIXED"
 
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
 
 CASHFLOW_FILE = "data/processed/cashflow_clean.csv"
 FINANCIAL_FILE = "data/processed/financial_ratios_clean.csv"

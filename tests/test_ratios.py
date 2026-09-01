@@ -1,13 +1,13 @@
 from src.analytics.ratios import (
-    net_profit_margin,
-    operating_profit_margin,
-    return_on_equity,
-    return_on_capital_employed,
-    return_on_assets,
+    asset_turnover,
     debt_to_equity_ratio,
     interest_coverage_ratio,
     net_debt,
-    asset_turnover,
+    net_profit_margin,
+    operating_profit_margin,
+    return_on_assets,
+    return_on_capital_employed,
+    return_on_equity,
 )
 
 

@@ -5,12 +5,12 @@ Sprint 2 - Day 8
 This module computes profitability ratios for companies.
 """
 
-from typing import Optional
+
 
 def net_profit_margin(
     net_profit: float,
     sales: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Net Profit Margin (%)
 
@@ -39,7 +39,7 @@ def return_on_equity(
     net_profit: float,
     equity_capital: float,
     reserves: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Return on Equity (ROE)
 
@@ -63,7 +63,7 @@ def return_on_capital_employed(
     equity_capital: float,
     reserves: float,
     borrowings: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Return on Capital Employed (ROCE)
 
@@ -103,7 +103,7 @@ def return_on_capital_employed(
 def return_on_assets(
     net_profit: float,
     total_assets: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Return on Assets (ROA)
 
@@ -123,7 +123,7 @@ def debt_to_equity_ratio(
     borrowings: float,
     equity_capital: float,
     reserves: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Debt-to-Equity Ratio.
 
@@ -145,7 +145,7 @@ def interest_coverage_ratio(
     operating_profit: float,
     other_income: float,
     interest: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Interest Coverage Ratio (ICR).
 
@@ -182,7 +182,7 @@ def net_debt(
 def asset_turnover(
     sales: float,
     total_assets: float
-) -> Optional[float]:
+) -> float | None:
     """
     Calculate Asset Turnover Ratio.
 

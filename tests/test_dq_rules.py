@@ -1,11 +1,19 @@
 import pandas as pd
 
 from src.dq.rules import (
-    dq_01_missing_primary_keys, dq_02_duplicate_primary_keys, dq_03_invalid_company_ids,
-    dq_04_balance_sheet_percent_mismatch, dq_05_negative_financial_values,
-    dq_06_missing_critical_values, dq_07_balance_sheet_absolute_mismatch,
-    dq_08_operating_profit_margin_mismatch, dq_09_invalid_sales, dq_10_invalid_market_cap,
-    dq_11_missing_net_profit, dq_12_missing_eps, dq_13_invalid_market_cap_year,
+    dq_01_missing_primary_keys,
+    dq_02_duplicate_primary_keys,
+    dq_03_invalid_company_ids,
+    dq_04_balance_sheet_percent_mismatch,
+    dq_05_negative_financial_values,
+    dq_06_missing_critical_values,
+    dq_07_balance_sheet_absolute_mismatch,
+    dq_08_operating_profit_margin_mismatch,
+    dq_09_invalid_sales,
+    dq_10_invalid_market_cap,
+    dq_11_missing_net_profit,
+    dq_12_missing_eps,
+    dq_13_invalid_market_cap_year,
     dq_14_duplicate_company_year,
 )
 

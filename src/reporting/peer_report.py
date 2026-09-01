@@ -1,7 +1,6 @@
 import sqlite3
+
 import pandas as pd
-from openpyxl import Workbook
-from openpyxl.styles import PatternFill, Font
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
 
@@ -126,18 +125,6 @@ class PeerComparisonReport:
         ]
 
         return report, percentiles
-    
-    def pivot_percentiles(self, percentile_df):
-
-        pivot = percentile_df.pivot(
-            index="company_id",
-            columns="metric",
-            values="percentile_rank"
-        )
-
-        pivot = pivot.reset_index()
-
-        return pivot
     
     def pivot_percentiles(self, percentile_df):
 

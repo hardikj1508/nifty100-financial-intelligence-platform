@@ -1,4 +1,3 @@
-from matplotlib.pylab import rint
 import pandas as pd
 
 companies = pd.read_csv("data/processed/companies_clean.csv")

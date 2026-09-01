@@ -1,5 +1,6 @@
-import pandas as pd
 import sqlite3
+
+import pandas as pd
 
 conn = sqlite3.connect("data/database/nifty100.db")
 conn.execute("PRAGMA foreign_keys = ON")

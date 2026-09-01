@@ -1,8 +1,7 @@
+import plotly.graph_objects as go
 import streamlit as st
 
 from src.dashboard.utils.db import *
-
-import plotly.graph_objects as go
 
 st.title("Peer Comparison")
 
@@ -74,11 +73,11 @@ fig.add_trace(
 
 fig.update_layout(
     title="Company vs Peer Average",
-    polar=dict(
-        radialaxis=dict(
-            visible=True
-        )
-    ),
+    polar={
+        "radialaxis": {
+            "visible":True
+        }
+    },
     showlegend=True
 )
 

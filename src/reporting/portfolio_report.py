@@ -1,9 +1,9 @@
 import os
 import sqlite3
-import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_pdf import PdfPages
 
+import matplotlib.pyplot as plt
+import pandas as pd
+from matplotlib.backends.backend_pdf import PdfPages
 
 DATABASE = "data/database/nifty100.db"
 OUTPUT_DIR = "reports/portfolio"

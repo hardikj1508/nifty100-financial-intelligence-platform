@@ -1,7 +1,7 @@
 import sqlite3
-from sqlalchemy import column
-import yaml
+
 import pandas as pd
+import yaml
 
 
 class ScreenerEngine:
@@ -18,19 +18,36 @@ class ScreenerEngine:
             self.conn
         )
 
-        # Remove duplicate company-year records (temporary safeguard)
+        # Keep latest available full-year (March) record per company
         financial_df = (
-            financial_df
-            .sort_values("id")
+            financial_df[
+                financial_df["year"].astype(str).str.contains("Mar")
+            ]
+            .sort_values(["company_id", "year", "id"])
             .drop_duplicates(
                 subset=["company_id", "year"],
-                keep="first"
+                keep="last"
             )
             .reset_index(drop=True)
         )
 
         financial_df["year"] = financial_df["year"].astype(str)
         financial_df["year"] = financial_df["year"].str.extract(r'(\d{4})')
+
+
+        financial_df["year_num"] = pd.to_numeric(
+            financial_df["year"],
+            errors="coerce"
+        )
+
+        financial_df = (
+            financial_df
+            .sort_values(["company_id", "year_num"])
+            .groupby("company_id", as_index=False)
+            .tail(1)
+            .drop(columns=["year_num"])
+            .reset_index(drop=True) 
+        )
 
         #Load market cap
         market_df = pd.read_sql(
@@ -39,10 +56,20 @@ class ScreenerEngine:
         )
 
         #Load analysis
-        analysis_df = pd.read_sql(
-            "SELECT * FROM analysis",
-            self.conn
+        analysis_df = pd.read_csv(
+            "data/processed/analysis_derived.csv"
         )
+
+        #Keep only the metrics required by the screener
+        analysis_df = analysis_df[
+            [
+                "company_id",
+                "compounded_sales_growth",
+                "compounded_profit_growth",
+                "stock_price_cagr",
+                "roe"
+            ]
+        ].copy()
 
         financial_df["year"] = financial_df["year"].astype(str)
         market_df["year"] = market_df["year"].astype(str)
@@ -88,9 +115,12 @@ class ScreenerEngine:
         self.df = merged_df
 
     
-    def apply_filters(self, preset_name):
+    def apply_filters(self, preset_name, df = None):
 
-        filtered_df = self.df.copy()
+        if df is None:
+            filtered_df = self.df.copy()
+        else:
+            filtered_df = df.copy()
 
         preset = self.config.get(preset_name)
 
@@ -132,7 +162,7 @@ class ScreenerEngine:
             if "max" in condition:
 
                 # Skip Debt-to-Equity filter for Financials
-                if column == "debt_to_equity":
+                if column == "debt_to_equity" and preset_name != "debt_free_blue_chip":
 
                     financials = filtered_df[
                         filtered_df["broad_sector"] == "Financials"

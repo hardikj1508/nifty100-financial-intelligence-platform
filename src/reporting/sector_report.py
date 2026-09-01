@@ -1,7 +1,8 @@
-import sqlite3
 import os
-import pandas as pd
+import sqlite3
+
 import matplotlib.pyplot as plt
+import pandas as pd
 from matplotlib.backends.backend_pdf import PdfPages
 
 DATABASE = "data/database/nifty100.db"
@@ -389,7 +390,7 @@ def generate_all_sector_reports():
             else:
                 skipped += 1
 
-        except Exception as e:
+        except (ValueError, KeyError, TypeError) as e:
 
             skipped += 1
             print(f"FAILED: {sector} -> {e}")

@@ -1,9 +1,9 @@
+import os
 import sqlite3
-import pandas as pd
+
 import matplotlib.pyplot as plt
 import numpy as np
-import os
-
+import pandas as pd
 
 DATABASE = "data/database/nifty100.db"
 
@@ -100,9 +100,9 @@ class RadarChartGenerator:
             endpoint=True
         )
 
-        fig, ax = plt.subplots(
+        _, ax = plt.subplots(
             figsize=(8, 8),
-            subplot_kw=dict(polar=True)
+            subplot_kw={"polar": True}
         )
 
         ax.plot(angles, values, linewidth=2)
@@ -168,7 +168,7 @@ class RadarChartGenerator:
                 self.plot_radar_chart(company, year)
                 generated += 1
 
-            except Exception as e:
+            except (ValueError, KeyError, TypeError) as e:
                 print(f"Skipping {company}: {e}")
 
         print(f"{generated} radar charts generated.")

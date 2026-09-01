@@ -1,10 +1,14 @@
 """Stock screener API endpoints."""
 
+import math
 import re
 import sqlite3
 
+import pandas as pd
+
 from fastapi import APIRouter, HTTPException, Query
 
+from src.screener.engine import ScreenerEngine
 
 router = APIRouter(
     prefix="/screener",
@@ -29,10 +33,10 @@ def parse_number(value: str | None, parameter_name: str):
             detail=f"{parameter_name} must be a valid number",
         )
 
-    if number != number:
+    if math.isnan(number):
         raise HTTPException(
             status_code=400,
-            detail=f"{parameter_name} must be a valid number",
+            detail=f"{parameter_name} must be a valid number"
         )
 
     return number
@@ -324,12 +328,11 @@ def screen_companies(
             ):
                 continue
 
-            if sector:
-                if (
-                    broad_sector is None
-                    or broad_sector.lower() != sector.lower()
-                ):
-                    continue
+            if sector and (
+                broad_sector is None
+                or broad_sector.lower() != sector.lower()
+            ):
+                continue
 
             if (
                 min_rev_cagr_value is not None
@@ -450,3 +453,100 @@ def screen_companies(
 
     finally:
         conn.close()
+
+@router.get("/presets")
+def screen_by_preset(
+    preset: str = Query(
+        default="growth_accelerator",
+        description="Screener preset name",
+    ),
+    limit: int = Query(
+        default=10,
+        ge=1,
+        le=100,
+        description="Number of companies to return",
+    ),
+):
+    """Run the validated ScreenerEngine using a configured preset."""
+
+    engine = ScreenerEngine(
+        "data/database/nifty100.db",
+        "config/screener_config.yaml",
+    )
+
+    try:
+        # Apply requested preset
+        filtered_df = engine.apply_filters(preset)
+
+        # Calculate sector-normalized composite score
+        scored_df = engine.calculate_composite_score(
+            filtered_df
+        )
+
+        # Rank by composite quality score
+        ranked_df = engine.rank_companies(
+            scored_df,
+            "composite_quality_score",
+        )
+
+        # Return requested number of companies
+        top_df = engine.get_top_companies(
+            ranked_df,
+            limit,
+        )
+
+        # Convert DataFrame to JSON-friendly records
+        companies = []
+
+        for rank, (_, row) in enumerate(
+            top_df.iterrows(),
+            start=1,
+        ):
+            companies.append(
+                {
+                    "rank": rank,
+                    "ticker": row["company_id"],
+                    "sector": row.get("broad_sector"),
+                    "compounded_sales_growth": row.get(
+                        "compounded_sales_growth"
+                    ),
+                    "compounded_profit_growth": row.get(
+                        "compounded_profit_growth"
+                    ),
+                    "roe": row.get(
+                        "return_on_equity_pct"
+                    ),
+                    "debt_to_equity": row.get(
+                        "debt_to_equity"
+                    ),
+                    "interest_coverage": row.get(
+                        "interest_coverage"
+                    ),
+                    "composite_quality_score": row.get(
+                        "composite_quality_score"
+                    ),
+                }
+            )
+
+        # Convert NaN values to None
+        for company in companies:
+            for key, value in company.items():
+                if pd.isna(value):
+                    company[key] = None
+
+        return {
+            "preset": preset,
+            "count": len(companies),
+            "companies": companies,
+        }
+
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=400,
+            detail=str(exc),
+        )
+
+    finally:
+        engine.conn.close()
+
+

@@ -1,5 +1,5 @@
-import numpy as np
 import sqlite3
+
 import pandas as pd
 
 DATABASE = "data/database/nifty100.db"

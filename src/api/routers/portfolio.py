@@ -4,7 +4,6 @@ import sqlite3
 
 from fastapi import APIRouter, HTTPException, Query
 
-
 router = APIRouter(
     prefix="/portfolio",
     tags=["Portfolio"],

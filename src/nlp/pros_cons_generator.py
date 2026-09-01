@@ -1,7 +1,8 @@
-import pandas as pd
 from pathlib import Path
 
-from src.nlp.rules import PRO_RULES, CON_RULES
+import pandas as pd
+
+from src.nlp.rules import CON_RULES, PRO_RULES
 
 # ==========================================================
 # File Paths
@@ -18,12 +19,13 @@ OUTPUT_FILE = OUTPUT_DIR / "pros_cons_generated.csv"
 
 PARSED_ANALYSIS = "output/analysis_parsed.csv"
 
+
 # ==========================================================
 # Load Data
 # ==========================================================
 
-def load_data():
 
+def load_data():
     financial = pd.read_csv(FINANCIAL_FILE)
     analysis = pd.read_csv(ANALYSIS_FILE)
     companies = pd.read_csv(COMPANIES_FILE)
@@ -36,8 +38,8 @@ def load_data():
 # Prepare Dataset
 # ==========================================================
 
-def prepare_dataset():
 
+def prepare_dataset():
     financial, analysis, companies, parsed = load_data()
 
     print("Financial Columns:")
@@ -57,7 +59,7 @@ def prepare_dataset():
         index="company_id",
         columns="metric_type",
         values="value_pct",
-        aggfunc="first"
+        aggfunc="first",
     ).reset_index()
 
     # -----------------------------------------
@@ -67,7 +69,7 @@ def prepare_dataset():
     df = financial.merge(
         parsed,
         on="company_id",
-        how="left"
+        how="left",
     )
 
     return df
@@ -77,28 +79,27 @@ def prepare_dataset():
 # Helper Function
 # ==========================================================
 
+
 def add_result(results, company_id, rule, rule_type):
-    """
-    Append a Pro or Con rule to the output.
-    """
+    """Append a Pro or Con rule to the output."""
 
-    results.append({
-
-        "company_id": company_id,
-        "type": rule_type,
-        "rule_id": rule["id"],
-        "text": rule["text"],
-        "confidence_pct": rule["confidence"]
-
-    })
+    results.append(
+        {
+            "company_id": company_id,
+            "type": rule_type,
+            "rule_id": rule["id"],
+            "text": rule["text"],
+            "confidence_pct": rule["confidence"],
+        }
+    )
 
 
 # ==========================================================
 # Main Generator
 # ==========================================================
 
-def generate():
 
+def generate():
     df = prepare_dataset()
 
     print("=" * 60)
@@ -110,9 +111,9 @@ def generate():
 
     latest = (
         df.sort_values("year")
-          .groupby("company_id")
-          .tail(1)
-          .copy()
+        .groupby("company_id")
+        .tail(1)
+        .copy()
     )
 
     print(f"Latest Records : {len(latest)}")
@@ -131,351 +132,406 @@ def generate():
         # P1 : ROE > 20%
         # ---------------------------------------------
 
-        if pd.notna(row["return_on_equity_pct"]):
+        if (
+            pd.notna(row["return_on_equity_pct"])
+            and row["return_on_equity_pct"] > 20
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[0],
+                "pro",
+            )
 
-            if row["return_on_equity_pct"] > 20:
-
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[0],
-                    "pro"
-                )
+        # ---------------------------------------------
         # P2 : Positive Free Cash Flow
+        # ---------------------------------------------
 
-        if pd.notna(row["free_cash_flow_cr"]):
+        if (
+            pd.notna(row["free_cash_flow_cr"])
+            and row["free_cash_flow_cr"] > 0
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[1],
+                "pro",
+            )
 
-            if row["free_cash_flow_cr"] > 0:
-
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[1],
-                    "pro"
-                )
-
+        # ---------------------------------------------
         # P3 : Debt Free
+        # ---------------------------------------------
 
-        if pd.notna(row["debt_to_equity"]):
+        if (
+            pd.notna(row["debt_to_equity"])
+            and row["debt_to_equity"] == 0
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[2],
+                "pro",
+            )
 
-            if row["debt_to_equity"] == 0:
-
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[2],
-                    "pro"
-                )
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P4 : Revenue CAGR
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["compounded_sales_growth"]):
-            if row["compounded_sales_growth"] > 15:
+        if (
+            pd.notna(row["compounded_sales_growth"])
+            and row["compounded_sales_growth"] > 15
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[3],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[3],
-                    "pro"
-                )
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P5 : Operating Profit Margin
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["operating_profit_margin_pct"]):
-            if row["operating_profit_margin_pct"] > 25:
+        if (
+            pd.notna(row["operating_profit_margin_pct"])
+            and row["operating_profit_margin_pct"] > 25
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[4],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[4],
-                    "pro"
-                )               
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P6 : Profit CAGR
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["compounded_profit_growth"]):
-            if row["compounded_profit_growth"] > 20:
+        if (
+            pd.notna(row["compounded_profit_growth"])
+            and row["compounded_profit_growth"] > 20
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[5],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[5],
-                    "pro"
-                )
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P7 : High Interest Coverage
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["interest_coverage"]):
-            if row["interest_coverage"] > 10:
+        if (
+            pd.notna(row["interest_coverage"])
+            and row["interest_coverage"] > 10
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[6],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[6],
-                    "pro"
-                )
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P8 : Dividend Payout
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["dividend_payout_ratio_pct"]):
-            if row["dividend_payout_ratio_pct"] > 20:
+        if (
+            pd.notna(row["dividend_payout_ratio_pct"])
+            and row["dividend_payout_ratio_pct"] > 20
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[7],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[7],
-                    "pro"
-                )
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P9 : Positive EPS
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["earnings_per_share"]):
-            if row["earnings_per_share"] > 0:
+        if (
+            pd.notna(row["earnings_per_share"])
+            and row["earnings_per_share"] > 0
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[8],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[8],
-                    "pro"
-                )
-
-        # -------------------------------------------------
+        # ---------------------------------------------
         # P10 : High ROE
-        # -------------------------------------------------
+        # ---------------------------------------------
 
-        if pd.notna(row["return_on_equity_pct"]):
-            if row["return_on_equity_pct"] > 20:
+        if (
+            pd.notna(row["return_on_equity_pct"])
+            and row["return_on_equity_pct"] > 20
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[9],
+                "pro",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    PRO_RULES[9],
-                    "pro"
-                )
+        # ---------------------------------------------
+        # P11 : High Asset Turnover
+        # ---------------------------------------------
 
-        if pd.notna(row["asset_turnover"]):
-            if row["asset_turnover"] > 1:
-                add_result(results, company, PRO_RULES[10], "pro")
+        if (
+            pd.notna(row["asset_turnover"])
+            and row["asset_turnover"] > 1
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[10],
+                "pro",
+            )
 
-        if pd.notna(row["debt_to_equity"]):
-            if row["debt_to_equity"] < 0.5:
-                add_result(results, company, PRO_RULES[11], "pro")
+        # ---------------------------------------------
+        # P12 : Low Debt
+        # ---------------------------------------------
+
+        if (
+            pd.notna(row["debt_to_equity"])
+            and row["debt_to_equity"] < 0.5
+        ):
+            add_result(
+                results,
+                company,
+                PRO_RULES[11],
+                "pro",
+            )
 
         # -------------------------------------------------
         # C1 : High Debt
         # -------------------------------------------------
 
-        if pd.notna(row["debt_to_equity"]):
-            if row["debt_to_equity"] > 2:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[0],
-                    "con"
-                )
+        if (
+            pd.notna(row["debt_to_equity"])
+            and row["debt_to_equity"] > 2
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[0],
+                "con",
+            )
 
         # -------------------------------------------------
         # C2 : Negative Free Cash Flow
         # -------------------------------------------------
 
-        if pd.notna(row["free_cash_flow_cr"]):
-            if row["free_cash_flow_cr"] < 0:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[1],
-                    "con"
-                )
+        if (
+            pd.notna(row["free_cash_flow_cr"])
+            and row["free_cash_flow_cr"] < 0
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[1],
+                "con",
+            )
 
         # -------------------------------------------------
         # C3 : Low Operating Margin
         # -------------------------------------------------
 
-        if pd.notna(row["operating_profit_margin_pct"]):
-            if row["operating_profit_margin_pct"] < 10:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[2],
-                    "con"
-                )
+        if (
+            pd.notna(row["operating_profit_margin_pct"])
+            and row["operating_profit_margin_pct"] < 10
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[2],
+                "con",
+            )
 
         # -------------------------------------------------
         # C4 : Negative Net Profit
         # -------------------------------------------------
 
-        if pd.notna(row["net_profit_margin_pct"]):
-            if row["net_profit_margin_pct"] < 0:
+        if (
+            pd.notna(row["net_profit_margin_pct"])
+            and row["net_profit_margin_pct"] < 0
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[3],
+                "con",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[3],
-                    "con"
-                )
-                
         # -------------------------------------------------
         # C5 : Low Revenue Growth
         # -------------------------------------------------
 
-        if pd.notna(row["compounded_sales_growth"]):
-            if row["compounded_sales_growth"] < 5:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[4],
-                    "con"
-                )
+        if (
+            pd.notna(row["compounded_sales_growth"])
+            and row["compounded_sales_growth"] < 5
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[4],
+                "con",
+            )
 
         # -------------------------------------------------
         # C6 : Low Interest Coverage
         # -------------------------------------------------
 
-        if pd.notna(row["interest_coverage"]):
-            if row["interest_coverage"] < 1.5:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[5],
-                    "con"
-                )
+        if (
+            pd.notna(row["interest_coverage"])
+            and row["interest_coverage"] < 1.5
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[5],
+                "con",
+            )
 
         # -------------------------------------------------
         # C7 : Excessive Dividend Payout
         # -------------------------------------------------
 
-        if pd.notna(row["dividend_payout_ratio_pct"]):
-            if row["dividend_payout_ratio_pct"] > 100:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[6],
-                    "con"
-                )
+        if (
+            pd.notna(row["dividend_payout_ratio_pct"])
+            and row["dividend_payout_ratio_pct"] > 100
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[6],
+                "con",
+            )
 
         # -------------------------------------------------
         # C8 : Very High Debt
         # -------------------------------------------------
 
-        if pd.notna(row["debt_to_equity"]):
-            if row["debt_to_equity"] > 3:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[7],
-                    "con"
-                )
+        if (
+            pd.notna(row["debt_to_equity"])
+            and row["debt_to_equity"] > 3
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[7],
+                "con",
+            )
 
         # -------------------------------------------------
         # C9 : Low ROE
         # -------------------------------------------------
 
-        if pd.notna(row["return_on_equity_pct"]):
-            if row["return_on_equity_pct"] < 10:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[8],
-                    "con"
-                )
+        if (
+            pd.notna(row["return_on_equity_pct"])
+            and row["return_on_equity_pct"] < 10
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[8],
+                "con",
+            )
 
         # -------------------------------------------------
         # C10 : Low Asset Turnover
         # -------------------------------------------------
 
-        if pd.notna(row["asset_turnover"]):
-            if row["asset_turnover"] < 0.5:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[9],
-                    "con"
-                )
+        if (
+            pd.notna(row["asset_turnover"])
+            and row["asset_turnover"] < 0.5
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[9],
+                "con",
+            )
 
         # -------------------------------------------------
         # C11 : Extremely High Debt
         # -------------------------------------------------
 
-        if pd.notna(row["debt_to_equity"]):
-            if row["debt_to_equity"] > 5:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[10],
-                    "con"
-                )
+        if (
+            pd.notna(row["debt_to_equity"])
+            and row["debt_to_equity"] > 5
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[10],
+                "con",
+            )
 
         # -------------------------------------------------
         # C12 : Weak Profit Growth
         # -------------------------------------------------
 
-        if pd.notna(row["compounded_profit_growth"]):
-            if row["compounded_profit_growth"] < 5:
+        if (
+            pd.notna(row["compounded_profit_growth"])
+            and row["compounded_profit_growth"] < 5
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[11],
+                "con",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[11],
-                    "con"
-                )
-
+        # -------------------------------------------------
         # C13 : Low Dividend Payout
+        # -------------------------------------------------
 
-        if pd.notna(row["dividend_payout_ratio_pct"]):
-            if row["dividend_payout_ratio_pct"] < 20:
+        if (
+            pd.notna(row["dividend_payout_ratio_pct"])
+            and row["dividend_payout_ratio_pct"] < 20
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[12],
+                "con",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[12],
-                    "con"
-                )
-
+        # -------------------------------------------------
         # C14 : Low Asset Utilization
+        # -------------------------------------------------
 
-        if pd.notna(row["asset_turnover"]):
-            if row["asset_turnover"] < 1:
+        if (
+            pd.notna(row["asset_turnover"])
+            and row["asset_turnover"] < 1
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[13],
+                "con",
+            )
 
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[13],
-                    "con"
-                )
-
+        # -------------------------------------------------
         # C15 : Low Book Value
+        # -------------------------------------------------
 
-        if pd.notna(row["book_value_per_share"]):
-            if row["book_value_per_share"] < 100:
-
-                add_result(
-                    results,
-                    company,
-                    CON_RULES[14],
-                    "con"
-                )
+        if (
+            pd.notna(row["book_value_per_share"])
+            and row["book_value_per_share"] < 100
+        ):
+            add_result(
+                results,
+                company,
+                CON_RULES[14],
+                "con",
+            )
 
     # ======================================================
     # Save Results
@@ -516,7 +572,7 @@ def generate():
 
     results_df.to_csv(
         OUTPUT_FILE,
-        index=False
+        index=False,
     )
 
     print()
@@ -527,6 +583,7 @@ def generate():
 # ==========================================================
 # Entry Point
 # ==========================================================
+
 
 if __name__ == "__main__":
     generate()

@@ -6,14 +6,14 @@ This module computes CAGR (Compound Annual Growth Rate)
 for revenue, net profit and EPS.
 """
 
-from typing import Optional
+
 
 def calculate_cagr(
     beginning: float,
     ending: float,
     years: int,
     required_years: int = 5,
-) -> tuple[Optional[float], str]:
+) -> tuple[float | None, str]:
     """
     Calculate Compound Annual Growth Rate (CAGR).
 
@@ -55,7 +55,7 @@ def revenue_cagr(
     beginning_revenue: float,
     ending_revenue: float,
     years: int,
-) -> tuple[Optional[float], str]:
+) -> tuple[float | None, str]:
     """
     Calculate Revenue CAGR.
     """
@@ -65,7 +65,7 @@ def pat_cagr(
     beginning_pat: float,
     ending_pat: float,
     years: int,
-) -> tuple[Optional[float], str]:
+) -> tuple[float | None, str]:
     """
     Calculate PAT (Net Profit) CAGR.
     """
@@ -75,7 +75,7 @@ def eps_cagr(
     beginning_eps: float,
     ending_eps: float,
     years: int,
-) -> tuple[Optional[float], str]:
+) -> tuple[float | None, str]:
     """
     Calculate EPS CAGR.
     """

@@ -6,11 +6,10 @@ Cluster Profiling, Correlation, Outliers & Portfolio Statistics
 
 from pathlib import Path
 
-import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 import seaborn as sns
-
 
 # ============================================================
 # PATHS
@@ -600,7 +599,7 @@ def run_day37():
         "\nRunning sector-wise outlier detection..."
     )
 
-    outliers = detect_sector_outliers(
+    _outliers = detect_sector_outliers(
         df
     )
 

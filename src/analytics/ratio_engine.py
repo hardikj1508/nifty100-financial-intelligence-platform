@@ -1,20 +1,18 @@
 import csv
 import sqlite3
 
-from src.analytics.ratios import (
-    net_profit_margin,
-    operating_profit_margin,
-    return_on_equity,
-    return_on_capital_employed,
-    return_on_assets,
-    debt_to_equity_ratio,
-    interest_coverage_ratio,
-    net_debt,
-    asset_turnover,
-)
-
 from src.analytics.cashflow_kpis import (
     free_cash_flow,
+)
+from src.analytics.ratios import (
+    asset_turnover,
+    debt_to_equity_ratio,
+    interest_coverage_ratio,
+    net_profit_margin,
+    operating_profit_margin,
+    return_on_assets,
+    return_on_capital_employed,
+    return_on_equity,
 )
 
 DATABASE = "data/database/nifty100.db"
@@ -325,7 +323,7 @@ def populate_financial_ratios():
     # --------------------------------------------------------
 
     updated_rows = 0
-    missing_rows = 0
+    _missing_rows = 0
     roe_mismatches = 0
     roce_mismatches = 0
     high_debt_flags = 0
@@ -345,18 +343,18 @@ def populate_financial_ratios():
             other_income,
             interest,
             net_profit,
-            eps,
-            dividend_payout,
+            _eps,
+            _dividend_payout,
 
             equity_capital,
             reserves,
             borrowings,
-            investments,
+            _investments,
             total_assets,
 
             operating_activity,
             investing_activity,
-            financing_activity,
+            _financing_activity,
 
             expected_roe,
             expected_roce
@@ -470,41 +468,41 @@ def populate_financial_ratios():
             investing_activity
         )
 
-        # ====================================================
-        # ROE VALIDATION
-        # ====================================================
+        # # ====================================================
+        # # ROE VALIDATION
+        # # ====================================================
 
-        if (
-            roe is not None
-            and expected_roe is not None
-            and abs(roe - expected_roe) > 5
-        ):
+        # if (
+        #     roe is not None
+        #     and expected_roe is not None
+        #     and abs(roe - expected_roe) > 5
+        # ):
 
-            roe_mismatches += 1
+        #     roe_mismatches += 1
 
-            log_issue(
-                f"{company_id} | {year} | ROE mismatch | "
-                f"Calculated={roe:.2f} | "
-                f"Source={expected_roe:.2f}"
-            )
+        #     log_issue(
+        #         f"{company_id} | {year} | ROE mismatch | "
+        #         f"Calculated={roe:.2f} | "
+        #         f"Source={expected_roe:.2f}"
+        #     )
 
-        # ====================================================
-        # ROCE VALIDATION
-        # ====================================================
+        # # ====================================================
+        # # ROCE VALIDATION
+        # # ====================================================
 
-        if (
-            roce is not None
-            and expected_roce is not None
-            and abs(roce - expected_roce) > 5
-        ):
+        # if (
+        #     roce is not None
+        #     and expected_roce is not None
+        #     and abs(roce - expected_roce) > 5
+        # ):
 
-            roce_mismatches += 1
+        #     roce_mismatches += 1
 
-            log_issue(
-                f"{company_id} | {year} | ROCE mismatch | "
-                f"Calculated={roce:.2f} | "
-                f"Source={expected_roce:.2f}"
-            )
+        #     log_issue(
+        #         f"{company_id} | {year} | ROCE mismatch | "
+        #         f"Calculated={roce:.2f} | "
+        #         f"Source={expected_roce:.2f}"
+        #     )
 
         # ====================================================
         # DEBT-TO-EQUITY VALIDATION

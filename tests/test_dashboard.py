@@ -1,5 +1,6 @@
-from src.dashboard.utils.db import get_connection
 import pandas as pd
+
+from src.dashboard.utils.db import get_connection
 
 conn = get_connection()
 

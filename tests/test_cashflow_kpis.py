@@ -1,10 +1,12 @@
 from src.analytics.cashflow_kpis import (
-    free_cash_flow,
-    cfo_quality_score,
     capex_intensity,
-    fcf_conversion_rate,
     capital_allocation_pattern,
+    cfo_quality_score,
+    fcf_conversion_rate,
+    free_cash_flow,
 )
+
+
 def test_free_cash_flow():
     assert free_cash_flow(800, -300) == 500
 

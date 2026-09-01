@@ -1,4 +1,5 @@
 import sqlite3
+
 import pandas as pd
 import streamlit as st
 
@@ -136,8 +137,7 @@ def get_valuation(company_id):
             params=[company_id]
         )
 
-    except:
-
+    except sqlite3.Error:
         return pd.DataFrame()
     
 @st.cache_data(ttl=600)

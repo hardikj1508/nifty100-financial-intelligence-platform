@@ -46,7 +46,7 @@ debt_free_blue_chip:
     max: 0
 
   return_on_equity_pct:
-    min: 
+    min: 20
     
 turnaround_watch:
   compounded_sales_growth:
