@@ -1,4 +1,4 @@
-# 📊 Nifty 100 Financial Intelligence Platform
+# Nifty 100 Financial Intelligence Platform
 
 > An end-to-end financial analytics platform for analyzing, comparing, screening, and reporting on companies in the Nifty 100 index.
 
@@ -8,7 +8,7 @@ The system processes structured financial data for **92 Nifty 100 companies**, c
 
 ---
 
-## 🎯 Project Objectives
+## Project Objectives
 
 The project was developed to transform raw financial data into a structured analytical system capable of answering questions such as:
 
@@ -25,9 +25,9 @@ The goal was not simply to build a visualization dashboard, but to develop a com
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 📈 Financial Analytics
+### Financial Analytics
 
 - Multi-year financial statement analysis
 - Revenue and profitability trends
@@ -36,7 +36,7 @@ The goal was not simply to build a visualization dashboard, but to develop a com
 - Historical KPI analysis
 - Company-level financial profiling
 
-### 💰 Valuation Analytics
+### Valuation Analytics
 
 - Price-to-Earnings (P/E)
 - Price-to-Book (P/B)
@@ -45,7 +45,7 @@ The goal was not simply to build a visualization dashboard, but to develop a com
 - Sector-level valuation comparison
 - Automated valuation classification and flagging
 
-### 🔍 Stock Screener
+### Stock Screener
 
 A configurable screening engine supporting **18 financial screening criteria**, allowing companies to be filtered using metrics such as:
 
@@ -60,7 +60,7 @@ A configurable screening engine supporting **18 financial screening criteria**, 
 
 Screening criteria can be configured and combined to create customized investment research queries.
 
-### 🤝 Peer Comparison
+### Peer Comparison
 
 - Company-to-company benchmarking
 - Sector peer identification
@@ -68,7 +68,7 @@ Screening criteria can be configured and combined to create customized investmen
 - Peer averages
 - Interactive radar-chart visualization
 
-### 🏭 Sector Analysis
+### Sector Analysis
 
 - Sector-level aggregation
 - Cross-sector financial comparisons
@@ -76,7 +76,7 @@ Screening criteria can be configured and combined to create customized investmen
 - Sector distributions
 - Identification of sector leaders and relative differences
 
-### 💵 Capital Allocation Analysis
+### Capital Allocation Analysis
 
 Analysis of how companies deploy and generate capital through:
 
@@ -86,25 +86,25 @@ Analysis of how companies deploy and generate capital through:
 - Share buybacks
 - Historical capital allocation trends
 
-### 📊 Automated Reporting
+### Automated Reporting
 
 The platform includes automated financial reporting utilities for generating structured company-level financial summaries and **financial tear sheets** from processed data.
 
-### 🔌 REST API
+### REST API
 
 A FastAPI backend exposes financial data and analytical functionality through REST endpoints, with automatically generated Swagger documentation.
 
-### 🗄️ Structured Data Layer
+### Structured Data Layer
 
 Financial data is transformed from raw source files into cleaned datasets and stored in a structured **SQLite database**, providing a consistent data layer for analytics, APIs, and dashboards.
 
-### 🧪 Testing & Data Quality
+### Testing & Data Quality
 
 The project includes automated testing using **Pytest** covering analytical functions, API functionality, and data-quality checks.
 
 ---
 
-# 🏗️ System Architecture
+# System Architecture
 
 ```text
                          ┌──────────────────────┐
@@ -153,7 +153,7 @@ The project includes automated testing using **Pytest** covering analytical func
 
 ---
 
-# 🔄 Data Pipeline
+# Data Pipeline
 
 The platform follows a structured financial data pipeline:
 
@@ -207,7 +207,7 @@ The analytical layer is exposed through both:
 
 ---
 
-# 🖥️ Dashboard
+# Dashboard
 
 The Streamlit application contains **8 interactive modules**.
 
@@ -280,7 +280,7 @@ http://localhost:8000/docs
 
 ---
 
-# 📐 Analytics Layer
+# Analytics Layer
 
 The core analytics layer is organized into dedicated modules.
 
@@ -310,7 +310,7 @@ Transforms analytical results into structured financial summaries and reporting 
 
 ---
 
-# 🗄️ Database
+# Database
 
 The project uses **SQLite** as its structured financial data backend.
 
@@ -327,7 +327,7 @@ A separate data dictionary is maintained under the documentation directory to de
 
 ---
 
-# 🛠️ Technology Stack
+# Technology Stack
 
 | Category | Technologies |
 |---|---|
@@ -348,7 +348,7 @@ A separate data dictionary is maintained under the documentation directory to de
 
 ---
 
-# 📂 Project Structure
+# Project Structure
 
 ```text
 nifty100-financial-intelligence-platform/
@@ -416,7 +416,7 @@ nifty100-financial-intelligence-platform/
 
 ---
 
-# ⚙️ Installation & Setup
+# Installation & Setup
 
 ## Prerequisites
 
@@ -460,7 +460,7 @@ pip install -r requirements.txt
 
 ---
 
-# ▶️ Running the Platform
+# Running the Platform
 
 ## Streamlit Dashboard
 
@@ -500,7 +500,7 @@ http://localhost:8000/docs
 
 ---
 
-# 🧪 Testing
+# Testing
 
 Run the complete test suite:
 
@@ -518,7 +518,7 @@ The test suite covers analytical functionality, API components, and data-quality
 
 ---
 
-# 📸 Dashboard Screenshots
+# Dashboard Screenshots
 
 The repository contains screenshots of the completed dashboard under:
 
@@ -541,7 +541,7 @@ Available modules include:
 
 ---
 
-# 📊 Project Scope
+# Project Scope
 
 The completed platform covers:
 
@@ -558,7 +558,7 @@ The completed platform covers:
 
 ---
 
-# 🎓 Skills Demonstrated
+# Skills Demonstrated
 
 This project brings together several areas of practical data and software engineering:
 
@@ -613,7 +613,7 @@ This project brings together several areas of practical data and software engine
 
 ---
 
-# ⚠️ Limitations
+# Limitations
 
 The current platform is primarily an **analytical and research system**, rather than a live trading platform.
 
@@ -626,7 +626,7 @@ Current limitations include:
 
 ---
 
-# 🚀 Future Enhancements
+# Future Enhancements
 
 Potential extensions include:
 
@@ -642,7 +642,7 @@ Potential extensions include:
 
 ---
 
-# 📌 Disclaimer
+# Disclaimer
 
 This project is intended for **educational, analytical, and research purposes**.
 
@@ -650,7 +650,7 @@ The financial metrics, screening outputs, valuation classifications, and other a
 
 ---
 
-# 👨‍💻 Author
+# Author
 
 **Hardik Jain**
 
@@ -666,7 +666,7 @@ The financial metrics, screening outputs, valuation classifications, and other a
 
 ---
 
-## ⭐ Project Highlights
+## Project Highlights
 
 The Nifty 100 Financial Intelligence Platform demonstrates an end-to-end approach to building a financial analytics product:
 
