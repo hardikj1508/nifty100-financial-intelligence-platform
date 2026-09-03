@@ -1,1 +1,12 @@
-pytest-html
+streamlit>=1.30.0
+fastapi>=0.109.0
+uvicorn>=0.27.0
+pandas>=2.1.0
+numpy>=1.26.0
+plotly>=5.18.0
+openpyxl>=3.1.2
+pyyaml>=6.0.1
+scikit-learn>=1.4.0
+
+pytest>=8.0.0
+pytest-html>=4.1.1
