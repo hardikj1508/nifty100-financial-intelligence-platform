@@ -74,6 +74,17 @@ print("\nMissing Values:")
 print(balancesheet.isnull().sum())
 print("\nDuplicate Rows:")
 print(balancesheet.duplicated().sum())
+
+#Remove duplicate company-year records
+balancesheet = balancesheet.drop_duplicates(
+    subset=["company_id", "year"],
+    keep="last"
+)
+
+print("\nAfter removing company-year duplicates:")
+print("Duplicate company_id + year:",
+      balancesheet.duplicated(["company_id", "year"]).sum())
+
 print("\nShape:")
 print(balancesheet.shape)
 
