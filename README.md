@@ -1,265 +1,693 @@
 # 📊 Nifty 100 Financial Intelligence Platform
 
-A comprehensive financial analytics dashboard built using **Python**, **Streamlit**, **SQLite**, and **Pandas** for analyzing companies listed in the Nifty 100 index.
+> An end-to-end financial analytics platform for analyzing, comparing, screening, and reporting on companies in the Nifty 100 index.
 
-The platform provides investors and analysts with interactive dashboards to explore company financials, compare peers, evaluate sector performance, analyze capital allocation, monitor valuation metrics, and generate business insights through an intuitive web interface.
+The **Nifty 100 Financial Intelligence Platform** is a Python-based financial analytics system that combines **data engineering, financial analysis, valuation analytics, stock screening, peer benchmarking, sector analysis, capital allocation analysis, automated reporting, REST APIs, and interactive visualization** into a single platform.
 
-This project was developed as part of an internship to demonstrate skills in data engineering, financial analytics, data visualization, and dashboard development.
+The system processes structured financial data for **92 Nifty 100 companies**, covering **30+ financial KPIs across 11 sectors**, and makes the resulting insights accessible through an interactive **Streamlit dashboard** and a **FastAPI REST API**.
 
-## 🚀 Features
+---
 
-- Interactive Streamlit dashboard for Nifty 100 company analysis
-- Company Profile with key financial metrics and business information
-- Advanced Stock Screener using customizable financial filters
-- Peer Comparison with radar charts and benchmark analysis
-- Multi-year Financial Trends visualization
-- Sector-wise analysis and performance comparison
-- Capital Allocation analysis (CapEx, Free Cash Flow, Dividends, Buybacks)
-- Valuation Analytics
-  - P/E Ratio
-  - P/B Ratio
-  - EV/EBITDA
-  - Free Cash Flow Yield
-  - Sector Median P/E Comparison
-  - Valuation Flagging (Fair, Discount, Caution)
-- Downloadable reports and summary outputs
-- SQLite-powered backend for efficient data retrieval
-- Interactive visualizations using Plotly
-- Robust handling of missing and partial financial data
+## 🎯 Project Objectives
 
-## 🛠️ Technology Stack
+The project was developed to transform raw financial data into a structured analytical system capable of answering questions such as:
 
-| Category | Technologies |
-|----------|--------------|
-| Programming Language | Python 3 |
-| Dashboard | Streamlit |
-| Database | SQLite |
-| Data Processing | Pandas, NumPy |
-| Visualization | Plotly |
-| File Handling | OpenPyXL |
-| Version Control | Git, GitHub |
-| Development Environment | Visual Studio Code |
+- How financially healthy is a company?
+- How does a company compare with its peers?
+- Is a company's valuation relatively attractive within its sector?
+- Which companies satisfy specific financial screening criteria?
+- How have revenue, profitability, cash flow, and other financial metrics changed over time?
+- How do financial characteristics differ across sectors?
+- How efficiently is a company allocating capital?
+- How can financial insights be generated consistently from structured data?
 
-## 📂 Project Structure
+The goal was not simply to build a visualization dashboard, but to develop a complete workflow from **data preparation → storage → analytics → APIs → visualization → reporting**.
 
-```text
-Nifty100-Financial-Intelligence-Platform/
-│
-├── config/                 # Configuration files
-├── data/
-│   ├── database/           # SQLite database
-│   ├── raw/                # Raw financial datasets
-│   └── processed/          # Cleaned datasets
-│
-├── docs/                   # Documentation and screenshots
-├── notebooks/              # Development notebooks
-├── output/                 # Generated reports and outputs
-├── reports/                # Project reports
-│
-├── src/
-│   ├── analytics/          # Financial analytics modules
-│   ├── dashboard/
-│   │   ├── pages/          # Streamlit pages
-│   │   ├── utils/          # Dashboard utilities
-│   │   └── app.py          # Dashboard entry point
-│   ├── etl/                # Data extraction and transformation
-│   ├── reporting/          # Report generation
-│   ├── screener/           # Stock screener logic
-│   └── utils/              # Shared utility functions
-│
-├── tests/                  # Unit tests
-├── requirements.txt
-├── README.md
-└── .gitignore
-```
+---
 
-## 📊 Dashboard Modules
+## ✨ Key Features
 
-The application consists of the following interactive modules:
+### 📈 Financial Analytics
 
-### 🏠 Home
-- Dashboard overview with key financial insights and navigation.
+- Multi-year financial statement analysis
+- Revenue and profitability trends
+- Financial ratio calculations
+- CAGR calculations
+- Historical KPI analysis
+- Company-level financial profiling
 
-### 🏢 Company Profile
-- Company information
-- Key financial KPIs
-- Business description
-- Official website and exchange links
+### 💰 Valuation Analytics
 
-### 🔍 Stock Screener
-- Filter companies using multiple financial metrics.
-- Dynamic search and comparison capabilities.
-
-### 🤝 Peer Comparison
-- Compare companies within the same sector.
-- Interactive radar chart for financial metrics.
-- Peer average benchmarking.
-
-### 📈 Financial Trends
-- Multi-year trend analysis.
-- Interactive charts for financial performance.
-
-### 🏭 Sector Analysis
-- Compare companies across different sectors.
-- Sector-level financial insights.
-
-### 💰 Capital Allocation
-- Analyze:
-  - Capital Expenditure (CapEx)
-  - Free Cash Flow
-  - Dividends
-  - Share Buybacks
-
-### 📑 Reports
-- Download processed reports.
-- Access project documentation and summary outputs.
-
-### 💹 Valuation Analytics
 - Price-to-Earnings (P/E)
 - Price-to-Book (P/B)
 - EV/EBITDA
 - Free Cash Flow Yield
-- Sector Median P/E Comparison
-- Valuation Classification (Fair, Discount, Caution)
+- Sector-level valuation comparison
+- Automated valuation classification and flagging
 
-## ⚙️ Installation & Setup
+### 🔍 Stock Screener
 
-### 1. Clone the Repository
+A configurable screening engine supporting **18 financial screening criteria**, allowing companies to be filtered using metrics such as:
+
+- P/E
+- ROE
+- Debt/Equity
+- Market Capitalization
+- Profitability metrics
+- Growth metrics
+- Valuation metrics
+- Cash-flow related measures
+
+Screening criteria can be configured and combined to create customized investment research queries.
+
+### 🤝 Peer Comparison
+
+- Company-to-company benchmarking
+- Sector peer identification
+- Comparative financial metrics
+- Peer averages
+- Interactive radar-chart visualization
+
+### 🏭 Sector Analysis
+
+- Sector-level aggregation
+- Cross-sector financial comparisons
+- Valuation comparisons
+- Sector distributions
+- Identification of sector leaders and relative differences
+
+### 💵 Capital Allocation Analysis
+
+Analysis of how companies deploy and generate capital through:
+
+- Capital expenditure (CapEx)
+- Free Cash Flow
+- Dividend distributions
+- Share buybacks
+- Historical capital allocation trends
+
+### 📊 Automated Reporting
+
+The platform includes automated financial reporting utilities for generating structured company-level financial summaries and **financial tear sheets** from processed data.
+
+### 🔌 REST API
+
+A FastAPI backend exposes financial data and analytical functionality through REST endpoints, with automatically generated Swagger documentation.
+
+### 🗄️ Structured Data Layer
+
+Financial data is transformed from raw source files into cleaned datasets and stored in a structured **SQLite database**, providing a consistent data layer for analytics, APIs, and dashboards.
+
+### 🧪 Testing & Data Quality
+
+The project includes automated testing using **Pytest** covering analytical functions, API functionality, and data-quality checks.
+
+---
+
+# 🏗️ System Architecture
+
+```text
+                         ┌──────────────────────┐
+                         │    Raw Financial     │
+                         │        Data          │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                         ┌──────────────────────┐
+                         │      ETL Pipeline    │
+                         │                      │
+                         │ Extract              │
+                         │ Transform / Clean    │
+                         │ Validate             │
+                         │ Load                 │
+                         └──────────┬───────────┘
+                                    │
+                                    ▼
+                    ┌──────────────────────────────┐
+                    │      Processed Datasets      │
+                    │          + SQLite             │
+                    └──────────────┬───────────────┘
+                                   │
+                  ┌────────────────┼────────────────┐
+                  │                │                │
+                  ▼                ▼                ▼
+          ┌──────────────┐ ┌──────────────┐ ┌──────────────┐
+          │   Analytics  │ │   Screener   │ │  Reporting   │
+          │              │ │              │ │              │
+          │ Ratios       │ │ 18 Filters  │ │ Tear Sheets  │
+          │ CAGR         │ │ Custom Rules │ │ Summaries    │
+          │ Valuation    │ │              │ │              │
+          │ Clustering   │ │              │ │              │
+          └──────┬───────┘ └──────┬───────┘ └──────┬───────┘
+                 │                │                │
+                 └────────────────┼────────────────┘
+                                  │
+                   ┌──────────────┴──────────────┐
+                   │                             │
+                   ▼                             ▼
+          ┌─────────────────┐          ┌─────────────────┐
+          │ Streamlit       │          │ FastAPI         │
+          │ Dashboard       │          │ REST API        │
+          └─────────────────┘          └─────────────────┘
+```
+
+---
+
+# 🔄 Data Pipeline
+
+The platform follows a structured financial data pipeline:
+
+### 1. Extraction
+
+Raw financial information is sourced from structured financial datasets, primarily maintained in spreadsheet/file formats.
+
+### 2. Transformation
+
+The ETL layer performs tasks such as:
+
+- Data cleaning
+- Standardization
+- Type conversion
+- Missing-value handling
+- Financial metric preparation
+- Company-level data organization
+
+### 3. Validation
+
+Data-quality checks are applied before analytical processing to identify inconsistencies and invalid records.
+
+### 4. Storage
+
+Cleaned financial information is stored in:
+
+- Processed CSV datasets
+- SQLite database tables
+
+The database schema is documented through the project's SQL schema and data dictionary.
+
+### 5. Analytics
+
+The processed data feeds the project's:
+
+- Financial ratio calculations
+- CAGR calculations
+- Valuation analytics
+- Peer analysis
+- Sector analysis
+- Capital allocation analysis
+- Screening engine
+- Reporting utilities
+
+### 6. Presentation
+
+The analytical layer is exposed through both:
+
+- Streamlit dashboard
+- FastAPI REST API
+
+---
+
+# 🖥️ Dashboard
+
+The Streamlit application contains **8 interactive modules**.
+
+### 01 — Home Dashboard
+
+Provides an executive-level overview of the platform and market data with navigation to the analytical modules.
+
+### 02 — Company Profile
+
+Provides a detailed financial profile for an individual company, including financial KPIs, company information, and related market references.
+
+### 03 — Stock Screener
+
+Allows users to apply configurable financial criteria to identify companies matching selected thresholds.
+
+### 04 — Peer Comparison
+
+Compares companies against relevant peers using financial metrics and interactive radar-chart visualizations.
+
+### 05 — Financial Trends
+
+Provides multi-year analysis of:
+
+- Revenue
+- Growth
+- Profitability
+- Financial ratios
+- Other historical KPIs
+
+### 06 — Sector Analysis
+
+Analyzes financial characteristics across the **11 sectors** represented in the project's dataset.
+
+### 07 — Capital Allocation
+
+Examines:
+
+- CapEx
+- Free Cash Flow
+- Dividends
+- Buybacks
+- Capital deployment trends
+
+### 08 — Reports & Outputs
+
+Provides access to analytical summaries, downloadable data, and generated reporting outputs.
+
+---
+
+# 🔌 FastAPI REST API
+
+The platform includes a REST API built with **FastAPI**.
+
+| Router | Endpoint | Purpose |
+|---|---|---|
+| Health | `GET /api/v1/health` | Check API and database status |
+| Companies | `GET /api/v1/companies` | Retrieve Nifty 100 company information |
+| Company Detail | `GET /api/v1/companies/{id}` | Retrieve detailed company information |
+| Screener | `POST /api/v1/screener/run` | Execute screening criteria |
+| Valuation | `GET /api/v1/valuation` | Retrieve valuation metrics and classifications |
+| Peers | `GET /api/v1/peers/{symbol}` | Retrieve peer comparison data |
+| Market Cap | `GET /api/v1/market-cap` | Retrieve market-cap rankings/breakdowns |
+| Sectors | `GET /api/v1/sectors` | Retrieve sector-level financial aggregates |
+
+When the API server is running, interactive Swagger documentation is available at:
+
+```text
+http://localhost:8000/docs
+```
+
+---
+
+# 📐 Analytics Layer
+
+The core analytics layer is organized into dedicated modules.
+
+### Financial Ratios
+
+Calculates and prepares financial ratios used throughout the platform.
+
+### Valuation
+
+Provides valuation metrics and relative valuation classification.
+
+### CAGR
+
+Calculates compound annual growth rates for applicable multi-year financial metrics.
+
+### Clustering
+
+Provides analytical grouping functionality using Scikit-Learn-based clustering techniques.
+
+### Screener
+
+Implements configurable multi-metric financial screening logic.
+
+### Reporting
+
+Transforms analytical results into structured financial summaries and reporting outputs.
+
+---
+
+# 🗄️ Database
+
+The project uses **SQLite** as its structured financial data backend.
+
+```text
+data/
+└── database/
+    ├── nifty100.db
+    └── schema.sql
+```
+
+The database acts as the central structured data layer used by the analytical and API components.
+
+A separate data dictionary is maintained under the documentation directory to describe the project's financial fields and schema.
+
+---
+
+# 🛠️ Technology Stack
+
+| Category | Technologies |
+|---|---|
+| Programming Language | Python 3.10+ |
+| Data Processing | Pandas, NumPy |
+| Financial Analytics | Pandas, NumPy, Scikit-Learn |
+| Dashboard | Streamlit |
+| Visualization | Plotly |
+| REST API | FastAPI |
+| API Server | Uvicorn |
+| Data Validation / Models | Pydantic |
+| Database | SQLite |
+| Spreadsheet Processing | OpenPyXL |
+| Configuration | PyYAML |
+| Testing | Pytest, Pytest-HTML |
+| Code Quality | Ruff |
+| Version Control | Git, GitHub |
+
+---
+
+# 📂 Project Structure
+
+```text
+nifty100-financial-intelligence-platform/
+│
+├── config/
+│   └── screener_config.yaml
+│
+├── data/
+│   ├── database/
+│   │   ├── nifty100.db
+│   │   └── schema.sql
+│   │
+│   ├── raw/
+│   │   └── raw financial datasets
+│   │
+│   └── processed/
+│       └── cleaned financial datasets
+│
+├── docs/
+│   ├── screenshots/
+│   ├── architecture.md
+│   ├── data_dictionary.md
+│   └── Postman_collection.json
+│
+├── notebooks/
+│   └── exploratory analysis & research
+│
+├── output/
+│   └── generated exports & summaries
+│
+├── reports/
+│   └── generated reports
+│
+├── src/
+│   ├── analytics/
+│   │   ├── ratios.py
+│   │   ├── valuation.py
+│   │   ├── cagr.py
+│   │   └── clustering.py
+│   │
+│   ├── api/
+│   │   ├── main.py
+│   │   └── routers/
+│   │
+│   ├── dashboard/
+│   │   ├── app.py
+│   │   └── pages/
+│   │
+│   ├── etl/
+│   │
+│   ├── reporting/
+│   │
+│   ├── screener/
+│   │
+│   └── utils/
+│
+├── tests/
+│   ├── api/
+│   └── test_*.py
+│
+├── requirements.txt
+├── pytest.ini
+└── README.md
+```
+
+---
+
+# ⚙️ Installation & Setup
+
+## Prerequisites
+
+- Python **3.10+**
+- Git
+- pip
+
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/hardikj1508/nifty100-financial-intelligence-platform.git
+
 cd nifty100-financial-intelligence-platform
 ```
 
-### 2. Create a Virtual Environment (Optional)
+## 2. Create a Virtual Environment
 
-If you don't already have a virtual environment:
+### Windows
 
 ```bash
 python -m venv n100env
-```
 
-### 3. Activate the Virtual Environment
-
-**Windows**
-
-```bash
 n100env\Scripts\activate
 ```
 
-**Linux / macOS**
+### macOS / Linux
 
 ```bash
+python3 -m venv n100env
+
 source n100env/bin/activate
 ```
 
-### 4. Install Dependencies
+## 3. Install Dependencies
+
+Install the project's defined dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Run the Application
+---
+
+# ▶️ Running the Platform
+
+## Streamlit Dashboard
+
+From the project root:
 
 ```bash
-streamlit run app.py
+streamlit run src/dashboard/app.py
 ```
 
-## ✅ Section 7 — Project Outputs
+The dashboard will be available at:
 
-Now let's show what the project generates.
-
-```markdown
-## 📁 Project Outputs
-
-The project generates various analytical outputs, including:
-
-- Valuation Summary Report
-- Valuation Flags
-- Financial Trend Analysis
-- Capital Allocation Insights
-- Interactive Dashboard Visualizations
-- Downloadable Reports
-
-## 📸 Dashboard Preview
-
-### 🏠 Home Dashboard
-
-Interactive overview of the Nifty 100 Financial Intelligence Platform.
-
-![Home Dashboard](docs/screenshots/01_home.png)
+```text
+http://localhost:8501
+```
 
 ---
 
-### 🏢 Company Profile
+## FastAPI Backend
 
-View company information, KPIs, business details, and market links.
+Start the API server with:
 
-![Company Profile](docs/screenshots/02_profile.png)
+```bash
+uvicorn src.api.main:app --reload --port 8000
+```
 
----
+API:
 
-### 🔍 Stock Screener
+```text
+http://localhost:8000
+```
 
-Filter companies using multiple financial metrics.
+Swagger documentation:
 
-![Stock Screener](docs/screenshots/03_screener.png)
-
----
-
-### 🤝 Peer Comparison
-
-Compare companies with sector peers using interactive radar charts.
-
-![Peer Comparison](docs/screenshots/04_peer_comparison.png)
+```text
+http://localhost:8000/docs
+```
 
 ---
 
-### 📈 Financial Trends
+# 🧪 Testing
 
-Analyze multi-year financial performance.
+Run the complete test suite:
 
-![Financial Trends](docs/screenshots/05_financial_trends.png)
+```bash
+pytest
+```
 
----
+Generate an HTML test report:
 
-### 🏭 Sector Analysis
+```bash
+pytest --html=reports/test_report.html
+```
 
-Compare financial performance across sectors.
-
-![Sector Analysis](docs/screenshots/06_sector_analysis.png)
-
----
-
-### 💰 Capital Allocation
-
-Review CapEx, Free Cash Flow, Dividends, and Buybacks.
-
-![Capital Allocation](docs/screenshots/07_capital_allocation.png)
+The test suite covers analytical functionality, API components, and data-quality checks.
 
 ---
 
-### 📑 Reports
+# 📸 Dashboard Screenshots
 
-Access downloadable reports and generated analytics.
+The repository contains screenshots of the completed dashboard under:
 
-![Reports](docs/screenshots/08_reports.png)
+```text
+docs/screenshots/
+```
 
-## 🚀 Future Enhancements
+Available modules include:
 
-- Live stock market data integration
-- Portfolio tracking dashboard
-- Watchlist functionality
-- Advanced valuation models (DCF, Relative Valuation)
-- AI-powered financial insights
-- Export reports to PDF
-- User authentication and personalized dashboards
+| Module | Screenshot |
+|---|---|
+| Home Dashboard | `docs/screenshots/01_home.png` |
+| Company Profile | `docs/screenshots/02_profile.png` |
+| Stock Screener | `docs/screenshots/03_screener.png` |
+| Peer Comparison | `docs/screenshots/04_peer_comparison.png` |
+| Financial Trends | `docs/screenshots/05_financial_trends.png` |
+| Sector Analysis | `docs/screenshots/06_sector_analysis.png` |
+| Capital Allocation | `docs/screenshots/07_capital_allocation.png` |
+| Reports | `docs/screenshots/08_reports.png` |
 
-## 👨‍💻 Author
+---
+
+# 📊 Project Scope
+
+The completed platform covers:
+
+| Area | Scope |
+|---|---:|
+| Companies analyzed | 92 |
+| Financial KPIs | 30+ |
+| Sectors | 11 |
+| Screener criteria | 18 |
+| Dashboard modules | 8 |
+| Data storage | SQLite + processed datasets |
+| Interfaces | Streamlit + FastAPI |
+| Testing | Pytest-based automated test suite |
+
+---
+
+# 🎓 Skills Demonstrated
+
+This project brings together several areas of practical data and software engineering:
+
+### Data Analytics
+
+- Exploratory data analysis
+- Financial KPI analysis
+- Trend analysis
+- Comparative analysis
+- Ratio analysis
+
+### Financial Analytics
+
+- Valuation metrics
+- Profitability analysis
+- Growth analysis
+- Capital allocation
+- Peer benchmarking
+- Sector analysis
+
+### Data Engineering
+
+- ETL pipeline development
+- Data cleaning
+- Data validation
+- Structured data storage
+- SQLite database design
+
+### Python Development
+
+- Modular project architecture
+- Reusable analytical functions
+- Configuration-driven logic
+- API development
+- Automated testing
+
+### Visualization
+
+- Interactive Plotly visualizations
+- Streamlit dashboards
+- Radar charts
+- Financial trend visualizations
+- Sector comparisons
+
+### Software Engineering
+
+- REST API design
+- Unit and integration testing
+- Code organization
+- Git/GitHub workflow
+- Documentation
+
+---
+
+# ⚠️ Limitations
+
+The current platform is primarily an **analytical and research system**, rather than a live trading platform.
+
+Current limitations include:
+
+- Financial data is dependent on the available underlying datasets.
+- The platform does not currently provide a live real-time market-data feed.
+- Valuation analysis is based on the implemented financial metrics and relative comparisons rather than a complete investment valuation framework.
+- Screening results should be interpreted as analytical outputs rather than investment recommendations.
+
+---
+
+# 🚀 Future Enhancements
+
+Potential extensions include:
+
+- Live market-data integration
+- Dynamic DCF valuation
+- More comprehensive relative valuation models
+- Portfolio creation and watchlist functionality
+- Automated AI-assisted financial summaries
+- Additional predictive analytics
+- PDF report generation
+- Expanded historical data coverage
+- Deployment as a cloud-hosted financial analytics service
+
+---
+
+# 📌 Disclaimer
+
+This project is intended for **educational, analytical, and research purposes**.
+
+The financial metrics, screening outputs, valuation classifications, and other analytical results generated by the platform should **not be treated as financial advice or a recommendation to buy or sell securities**.
+
+---
+
+# 👨‍💻 Author
 
 **Hardik Jain**
 
-B.Sc. Statistics (Hons.)  
-St. Xavier's College, Ranchi University
+*B.Sc. Statistics (Hons.) — St. Xavier's College, Ranchi University*
 
-**Skills:** Python, SQL, SQLite, Pandas, NumPy, Streamlit, Plotly, Data Analysis, Financial Analytics
+**Areas of Interest**
+
+- Data Analytics
+- Data Engineering
+- Financial Analytics
+- Python Development
+- Interactive Data Visualization
+
+---
+
+## ⭐ Project Highlights
+
+The Nifty 100 Financial Intelligence Platform demonstrates an end-to-end approach to building a financial analytics product:
+
+```text
+Raw Data
+   ↓
+ETL & Data Quality
+   ↓
+Processed Financial Data
+   ↓
+SQLite Database
+   ↓
+Financial Analytics
+   ↓
+Screening / Valuation / Peer / Sector Analysis
+   ↓
+Reporting
+   ↓
+FastAPI + Streamlit
+   ↓
+Interactive Financial Intelligence Platform
+```
+
+**Built as a practical portfolio project combining financial analysis, data engineering, Python development, visualization, API development, and software testing.**
