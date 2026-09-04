@@ -257,7 +257,7 @@ Provides access to analytical summaries, downloadable data, and generated report
 
 ---
 
-# 🔌 FastAPI REST API
+# FastAPI REST API
 
 The platform includes a REST API built with **FastAPI**.
 
@@ -277,6 +277,17 @@ When the API server is running, interactive Swagger documentation is available a
 ```text
 http://localhost:8000/docs
 ```
+
+## Application URLs & Access Links
+
+| Service | Access URL | Description |
+| :--- | :--- | :--- |
+| **Streamlit Interactive Dashboard** | [http://localhost:8501](http://localhost:8501) | Primary 8-Page Web Interface |
+| **FastAPI REST API Server** | [http://localhost:8000](http://localhost:8000) | High-Performance REST API Backend |
+| **Interactive API Documentation (Swagger)** | [http://localhost:8000/docs](http://localhost:8000/docs) | Swagger UI for API Endpoint Testing |
+| **Alternative API Docs (ReDoc)** | [http://localhost:8000/redoc](http://localhost:8000/redoc) | ReDoc API Technical Specification |
+
+*Note: If deployed on cloud platforms like Streamlit Community Cloud or Render/AWS, replace `http://localhost:8501` with your deployed live URL (e.g. `https://your-app-name.streamlit.app`).*
 
 ---
 
